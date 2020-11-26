@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_HTML 종합 실습문제2</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <ol>
+                <li>
+                    <label for="name">납품자명(필수) : </label>
+                    <input type="text" id="name" name="name">
+                </li>
+                <br>
+                <li>
+                    <label for="email">email(필수) : </label>
+                    <input type="email" id="email" name="email" placeholder="answs@naver.com">
+                </li>
+                <br>
+                <li>
+                    <label for="homepage">홈페이지 : </label>
+                    <input type="url" id="homepage" name="homepage" placeholder="http://">
+                </li>
+                <br>
+                <li>
+                    <label for="location">지역 : </label>
+                    <select>
+                        <option>서울</option>
+                        <option>경기</option>
+                        <option>경남</option>
+                        <option>경북</option>
+                        <option selected>부산</option>
+                    </select>
+                </li>
+            </ol>
+        </fieldset>
+        <fieldset>
+            <legend>납품 정보</legend>
+            <ul>
+                <li>
+                    <label for="item">상품명(필수) : </label>
+                    <input type="text" id="item" name="item">
+                </li>
+                <br>
+                <li>
+                    <label for="amount">납품수량(필수) : </label>
+                    <input type="number" id="amount" name="amount" placeholder="최소 100">
+                </li>
+                <br>
+                <li>
+                    <label for="grade">납품등급(필수) : </label>
+                    <input type="range" id="grade" name="grade" min="0" max="100">
+                </li>
+                <br>
+                <li>
+                    <label for="item">기타사항 : </label>
+                    <textarea></textarea>
+                </li>
+                <br>
+            </ul>
+        </fieldset>
+        <br>
+        <input type="submit" value="send message">
+    </form>
+</body>
+</html>

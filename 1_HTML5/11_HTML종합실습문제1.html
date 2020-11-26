@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 종합 실습문제 1</title>
+</head>
+<body>
+    <form>
+        <label for="customerNm">고객명 : </label>
+        <input type="text" id="customerNm" name="name"><br><br>
+
+        <label for="tel">전화번호 : </label>
+        <input type="tel" id="tel" name="tel"><br><br>
+
+        <label for="email">E-mail : </label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="email">피자선택(필수) : </label>
+        <select>
+            <option selected>피자를 선택하세요.</option>
+            <option>콤비네이션 피자</option>
+            <option>하와이안 피자</option>
+            <option>치즈 피자</option>
+            <option>응애 피자</option>
+        </select>
+
+        <fieldset>
+            <legend>피자 사이즈</legend>
+            <input type="radio" id="small" name="size" value="S">
+            <label for="small">Small</label><br><br>
+
+            <input type="radio" id="Medium" name="size" value="M" checked>
+            <label for="Medium">Medium</label><br><br>
+
+            <input type="radio" id="Large" name="size" value="L">
+            <label for="Large">Large</label><br><br>
+        </fieldset>
+        <fieldset>
+            <legend>토핑 선택</legend>
+            <input type="checkbox" id="bacon" value="bacon" name="topping">
+            <label for="bacon">베이컨</label><br><br>
+
+            <input type="checkbox" id="cheese" value="cheese" name="topping">
+            <label for="cheese">치즈</label><br><br>
+
+            <input type="checkbox" id="onion" value="onion" name="topping">
+            <label for="onion">양파</label><br><br>
+
+            <input type="checkbox" id="mushroom" value="mushroom" name="topping">
+            <label for="mushroom">버섯</label><br><br>
+        </fieldset>
+
+        <label for="deliveryTime">희망 배송 시간 : </label>
+        <input type="time" id="deliveryTime" name="time"><br><br>
+
+        <label for="request">배송 시 요청사항 : </label>
+        <textarea></textarea>
+        <br><br>
+
+        <input type="submit" value="주문하기">
+
+    </form>
+</body>
+</html>
