@@ -157,7 +157,7 @@
         <input type="radio" id="male" value="M" name="gender">
         &nbsp;&nbsp;&nbsp;
         <label for="female">여</label>
-        <input type="radio" id="female" value="F" name="gender">
+        <input type="radio" id="female" value="F" name="gender" checked>
 
         <h3>type = "checkbox"</h3>
         [취미] <br>
@@ -168,12 +168,73 @@
         <input type="checkbox" id="basketball" value="basketball" name="hobby"><br>
 
         <label for="football">축구</label>
-        <input type="checkbox" id="football" value="football" name="hobby"><br>
+        <input type="checkbox" id="football" value="football" name="hobby" checked><br>
 
         <!-- checkbox의 name 속성이 모두 같을 경우
              데이터를 전달받은 서버 측에서 배열의 형태로 받아들임.
         -->
         <input type="submit" value="제출">
+    </form>
+
+    <hr><hr>
+
+    <h2>추가 input type + 입력 관련 태그</h2>
+    <form>
+        <!-- method 미작성시 기본값 get -->
+        <h3>type = "file"</h3>
+        파일선택 : <input type="file" name="upFile"><br>
+
+        <h3>type = "color"</h3>
+        색상 선택 : <input type="color" name="color"><br>
+
+        <h3>type = "hidden"</h3>
+        <p>화면에 값이 노출되지 않지만 코드상에는 존재하게 하는 타입</p>
+        <input type="hidden" name="val" value="test">
+
+        <input type="submit" value="제출">
+
+        <h3>버튼 관련 타입</h3>
+        <input type="submit" value="제출">
+        <!-- form태그 내용을 action 주소로 제출 -->
+
+        <input type="reset" value="초기화">
+        <!-- form태그 내부 input 데이터를 초기화 -->
+
+        <input type="button" value="버튼">
+        <!-- 아무런 기능이 없는 버튼 
+             -> javascript를 이용하여
+               버튼 클릭 이벤트를 부여하는 용도로 사용
+        -->
+    </form>
+
+    <hr>
+
+    <form>
+        <h3>select와 option태그</h3>
+        전화번호 :
+        <select name="phone">
+            <option>010</option>
+            <option>011</option>
+            <option>017</option>
+            <option>019</option>
+            <option selected>없음</option>
+        </select>
+
+        <h3>textarea 태그</h3>
+        <p>text를 여러 줄 입력 할 수 있는 태그</p>
+        <textarea name="ta" rows="10" cols="50" style="resize: none;">
+내용은
+여기다가
+작성하면돼요~
+        </textarea>
+
+
+        <h3>button 태그</h3>
+        <p>input의 버튼관련 타입을 쉽게 사용할 수 있도록 만들어진 태그</p>
+        <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+        <button type="button">걍버튼</button>
+        <button>기본값은 submit</button>
     </form>
 
 </body>
