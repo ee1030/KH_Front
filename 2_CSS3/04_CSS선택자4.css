@@ -1,0 +1,51 @@
+/* 일반 구조 선택자 */
+/* 형제 관계 태그 중 첫 번째 태그 선택 */
+#test1 p:first-child {
+    background-color: red;
+    color: white;
+}
+
+/* 형제 관계 태그 중 마지막 태그 선택 */
+#test1 p:last-child {
+    /* #test1의 자식 중 마지막 태그가 p태그일 경우 */
+    background-color: orange;
+    color: white;
+}
+
+/* 형제 관계 태그 중 앞에서 부터 지정된 수열 번째 태그 선택 */
+#test1 p:nth-child(2n) {
+    /* #test1의 후손 중 짝수번째 p태그 선택 */
+    background-color: greenyellow;
+}
+
+/* 형제 관계 태그 중 뒤에서 부터 지정된 수열 번째 태그 선택 */
+#test1 p:nth-last-child(4) {
+    /* #test1의 후손 중 짝수번째 p태그 선택 */
+    background-color: blue;
+    color: white;
+}
+
+/* 형태 구조 선택자 */
+
+/* 형제 관계 태그 중 첫 번째 태그 선택 */
+#test2 p:first-of-type {
+    background-color: red;
+    color: white;
+}
+
+/* 형제 관계 태그 중 마지막 태그 선택 */
+#test2 p:last-of-type {
+    background-color: orange;
+    color: white;
+}
+
+/* 형제 관계 태그 중 앞에서 부터 지정된 수열번째 태그 선택 */
+#test2 p:nth-of-type(2n) {
+    background-color: greenyellow;
+}
+
+/* 형제 관계 태그 중 뒤에서 부터 지정된 수열번째 태그 선택 */
+#test2 p:nth-last-of-type(3) {
+    background-color: blue;
+    color: white;
+}
