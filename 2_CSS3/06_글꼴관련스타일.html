@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_글꼴 관련 스타일</title>
+    <link rel="stylesheet" href="06_글꼴관련스타일.css" type="text/css">
+
+    <!-- 구글 웹 폰트 추가 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h3>font-family 속성 : 텍스트의 글꼴 지정 속성</h3>
+    <pre> 선택자 { font-family : "글꼴이름"; } </pre>
+    <p id="ff1">ABCD abcd 가나다라 1234 !@#$</p>
+    <p id="ff2">ABCD abcd 가나다라 1234 !@#$</p>
+    <p id="ff3">ABCD abcd 가나다라 1234 !@#$</p>
+
+    <h4>웹 폰트 사용 방법</h4>
+    <p>웹 폰트 제공 사이트 예시 : 
+        <a href="https://fonts.google.com" target="_blank">
+            구글 무료 웹폰트 사이트
+        </a>
+
+    </p>
+    <p id="wf1">ABCD abcd 가나다라 1234 !@#$</p>
+
+    <p>웹 폰트 제공 사이트 예시 : 
+        <a href="https://noonnu.cc" target="_blank">
+            눈누 상업용 무료 한글 폰트 사이트
+        </a>
+
+    </p>
+    <p id="wf2">ABCD abcd 가나다라 1234 !@#$</p>
+
+    <hr>
+    <h3>font-size 속성 : 텍스트 크기 변경 속성</h3>
+    <pre> 선택자 { font-size : "크기"; } </pre>
+    <ul>
+        <li id="size1">고정크기 px 테스트</li>
+        <li id="size2">가변크기 em 테스트</li>
+        <li id="size3">가변크기 % 테스트</li>
+    </ul>
+
+    <hr>
+    <h3>font-weight : 글꼴의 두께 표현</h3>
+    <pre>
+    선택자 { font-weight : normal(기본값) | bold | bolder | lighter | 100~900; }
+    </pre>
+    <ul>
+        <li id="fw1">굵은 글꼴</li>
+        <li id="fw2">상위 요소에서 상속된 굵기보다 굵은 글꼴</li>
+        <li id="fw3">상위 요소에서 상속된 굵기보다 얇은 글꼴</li>
+    </ul>
+
+    <hr>
+    <h3>font-variant : 입력된 영어 알파벳 중 소문자를 작은 대문자로 작게 표시</h3>
+    <p>Hello World!</p>
+    <p id="fv">Hello World!</p>
+
+    <hr>
+    <h3>font-style : 텍스트 기울임 지정</h3>
+    <pre> 
+        선택자{ font-style : normal | italic | oblique }
+    </pre>
+
+    <ul>
+        <li id="fs1">abcd ABCD 1234 가나다라</li>
+        <li id="fs2">abcd ABCD 1234 가나다라</li>
+        <!-- 글자를 기울이는 태그 <i> <em>보다 css를 활용하는게 더 좋다. -->
+    </ul>
+
+    <hr>
+    <h3>font 속성 : 글꼴 관련 스타일을 한번에 지정함</h3>
+    <pre>
+        선택자 { 
+            font : font-style font-variant font-weight
+                    font-size/line-height font-family;
+        }
+    </pre>
+
+    <ul>
+        <li id="f1">글꼴 관련 스타일1</li>
+        <li id="f2">글꼴 관련 스타일2</li>
+        <li id="f3">글꼴 관련 스타일3</li>
+    </ul>
+
+</body>
+</html>
