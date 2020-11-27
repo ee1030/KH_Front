@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_CSS 선택자 2</title>
+
+    <style>
+        /* 기본 속성 선택자 */
+        div[name=name2] {
+            background-color: orangered;
+        }
+
+        label[for=test] {
+            color: red;
+        }
+
+        /* 자식 선택자 */
+        #test1 > h4 { /* id가 test1인 태그의 자식 중 h4 태그를 선택 */
+            background-color: gold;
+        }
+
+        #test1 > ul > li {
+            background-color: aqua;
+        }
+
+        /* 후손 선택자 */
+        #test1 ul { /* id가 test1인 태그의 후손 중 ul 태그를 모두 선택 */
+            background-color: yellow;
+        }
+
+        #test1 li {
+            color: red;
+        }
+
+        /* 동위 선택자 */
+        #div-test2 + div { /* id가 div-test2인 요소 바로 뒤에 오는 div태그 선택 */
+            background-color: yellow;
+        }
+
+        /* #div-test3 ~ div {
+            id가 div-test3인 요소 바로 뒤에 오는 모든 div태그 선택
+            color: white;
+            background-color: orangered;
+        } */
+
+        /* 반응 선택자 */
+        .reaction-test {
+            width : 200px; /* 가로 폭 200px */
+            height : 200px; /* 세로 높이 200px */
+            background-color: yellow;
+            margin-bottom: 10px;
+            /* 요소 간의 간격(아래부분)을 10px을 벌려줌 */
+        }
+
+        #active-test:active {
+            /* id가 active-test인 요소가 클릭되었을 때 */
+            background-color: black;
+            color: yellow;
+        }
+
+        #hover-test:hover {
+            /* id가 hover-test인 요소에 마우스오버가 되었을 때 */
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 상태 선택자 */
+        input[name="fruits"]:checked {
+            /* input 태그 중에서 name 속성값이 fruits인 요소가 체크 되었을 때 */
+            width: 30px;
+            height: 30px;
+        }
+
+        .focus-test:focus {
+            /* 클래스가 focus-test인 요소에 포커스가 맞추어 졌을 때 */
+            background-color: lightcyan;
+        }
+
+        option:disabled {
+            /* option 태그 중 비활성화된 태그 */
+            background-color: gray;
+            color: white;
+        }
+
+        option:enabled {
+            /* option 태그 중 활성화된 태그 */
+            background-color: lime;
+        }
+    </style>
+</head>
+<body>
+    <h2>기본 속성 선택자</h2>
+    <p> 선택자 뒤에 [속성명=속성값] 형태로 작성하여
+        원하는 속성을 지닌 태그를 선택
+    </p>
+    <pre>선택자[속성명=속성값] { color : red; } </pre>
+    <div name="name1">div 1</div>
+    <div name="name2">div 2</div>
+    <label for="test">테스트</label>
+
+    <hr>
+    <h2>자식 선택자, 후손 선택자</h2>
+    <pre>
+    자식 선택자 :    선택자>선택자
+    후손 선택자 :    선택자 선택자
+    </pre>
+    <div id="test1">
+        <h4>자식입니다.</h4>
+        <h4>나도 자식입니다.</h4>
+        <ul id="testul"> 리스트
+            <li>ul태그의 자식이자 div 태그의 후손입니다.</li>
+            <li>ul태그의 자식이자 div 태그의 후손입니다.</li>
+        </ul>
+    </div>
+
+    <hr>
+    <h2>동위 선택자</h2>
+    <p>동위 관계에서 뒤에 위치한 태그를 선택 할 때 사용</p>
+    <pre>
+    바로 뒤에 오는 요소(b) 선택 : 선택자a + 선택자b
+    뒤에 오는 모든 요소 선택 : 선택자a ~ 선택자b
+    </pre>
+
+    <div id="div-test1">동위 선택자 테스트 1</div>
+    <div id="div-test2">동위 선택자 테스트 2</div>
+    <div id="div-test3">동위 선택자 테스트 3</div>
+    <div id="div-test4">동위 선택자 테스트 4</div>
+    <div id="div-test5">동위 선택자 테스트 5</div>
+
+    <hr>
+
+    <h2>반응 선택자</h2>
+    <p>사용자의 움직임에 따라 스타일이 달라지는 선택자</p>
+    <pre>
+    사용자가 요소를 클릭할 때 :          선택자:active
+    사용자가 요소에 마우스를 올렸을 때 : 선택자:hover
+    </pre>
+
+    <div class="reaction-test" id="active-test">active 테스트</div>
+    <div class="reaction-test" id="hover-test">hover 테스트</div>
+
+    <hr>
+    <h2>상태 선택자</h2>
+    <p>입력 양식의 상태에 따라 선택되는 선택자</p>
+    <pre>
+    checkbox에 체크가 되었는지, 안되었는지에 따른 상태 지정
+        -> input태그:checked
+    </pre>
+    <input type="checkbox" name="fruits"> 사과
+    <input type="checkbox" name="fruits"> 바나나
+    <input type="checkbox" name="fruits"> 딸기
+
+    <pre>
+    input 태그에 초점이 맞추어진 태그 선택
+        -> input태그:focus
+    </pre>
+    아이디 : <input type="text" id="userId" class="focus-test">
+    <br>
+    비밀번호 : <input type="password" id="userPwd" class="focus-test">
+
+    <pre>
+    사용 가능한 input 태그 선택 : input태그선택:enabled
+    사용 불가능한 input 태그 선택 : input태그선택:disabled
+    </pre>
+    <h4>당신의 연령대는?</h4>
+    <select>
+        <option disabled>10</option>
+        <option>20</option>
+        <option>30</option>
+        <option>40</option>
+        <option>50</option>
+        <option disabled>60</option>
+    </select>
+
+</body>
+</html>
