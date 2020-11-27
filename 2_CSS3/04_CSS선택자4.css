@@ -49,3 +49,42 @@
     background-color: blue;
     color: white;
 }
+
+/* 문자 선택자 */
+
+/* 첫번째 글자 선택 */
+#test3 > p::first-letter {
+    font-size: 28px;
+}
+
+/* 첫번째 줄 선택 */
+#test3 > p::first-line {
+    background-color: aqua;
+}
+
+/* 태그 요소 마지막 부분 공간을 선택 */
+#test3 > p:after {
+    content: "@@@@@@@@@@@@@@@@@@@@@@@@";
+}
+
+/* 태그별로 숫자를 부여하는 속성 */
+#test3 > p {
+    counter-increment: rint;
+}
+
+#test3 > p:before {
+    content: counter(rint) ">>";
+}
+
+/* 사용자가 드래그한 글자 선택 */
+#test3 p::selection {
+    background-color: pink;
+}
+
+/* 부정 선택자 */
+#test4 p:not(:nth-of-type(2n-1)) {
+    background-color: magenta;
+}
+
+
+
