@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_텍스트 관련 스타일</title>
+    <link rel="stylesheet" href="07_텍스트관련스타일.css" type="text/css">
+</head>
+<body>
+    <h3>color : 텍스트의 색상 지정</h3>
+    <pre> 
+        선택자 {
+            color : 색상명 | rgb16진수 | rgb10진수 | rgba | hsl | hsla;
+        } 
+    </pre>
+    <ul>
+        <li id="c-name">색상명으로 지정</li>
+        <li id="c-16">16진수 값으로 지정</li>
+        <li id="c-rgb">rgb 값으로 지정</li>
+        <li id="c-rgba">rgba 값으로 지정</li>
+        <li id="c-hsl">hsl 값으로 지정</li>
+        <li id="c-hsla">hsla 값으로 지정</li>
+    </ul>
+
+    <hr>
+    <h3>text-decoration : 텍스트에 줄을 긋거나 없애는 속성</h3>
+    <pre>
+        선택자 { text-decoration : none | underline | overline | line-through; }
+    </pre>
+    <ul>
+        <li><a id="td1" href="https://www.naver.com">네이버로 이동</a></li>
+        <li id="td2">밑줄</li>
+        <li id="td3">윗줄</li>
+        <li id="td4">삭제선줄</li>
+    </ul>
+
+    <hr>
+    <h3>text-shadow : 텍스트에 그림자 효과를 줄 때 사용</h3>
+    <pre>
+    선택자 { 
+        text-shadow : none | 
+        가로거리 세로거리 번짐정도 그림자색,
+        가로거리 세로거리 번짐정도 그림자색,
+        가로거리 세로거리 번짐정도 그림자색,
+        ...
+    }
+    </pre>
+    <div id="bg">
+        <span id="ts1" class="shadow">HTML5</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <span id="ts2" class="shadow">HTML5</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
+        <span id="ts3" class="shadow">HTML5</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <span id="ts4" class="shadow">HTML5</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+
+</body>
+</html>
