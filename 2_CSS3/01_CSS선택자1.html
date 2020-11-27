@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_CSS 선택자 1</title>
+
+    <style>
+        /* CSS 주석 */
+        /* style태그는 CSS를 작성하기 위한 영역으로
+           HTML 태그에서 작성하는 방법과 다른 형태의 문법을 사용함.
+         */
+
+        /* 모든 요소 선택자 */
+        * {
+            /* HTML 문서 내에 있는 모든 요소의 글자색을 red로 지정 */
+            /* color: red; */
+        }
+
+        /* 태그 선택자 */
+        p {
+            color: red;
+        }
+
+        /* 아이디 선택자 */
+        #id2 {
+            color: yellow;
+        }
+
+        #id3 {
+            color: white;
+        }
+
+        #id2,
+        #id3 {
+            background-color: black;
+        }
+
+        /* 여러 선택자를 연달아 사용할 경우 콤마(,) 기호로 구분 */
+        #id6 {
+            color: hotpink;
+        }
+
+        /* 클래스 선택자 */
+        .class1 {
+            background-color: yellow;
+        }
+
+        .class2 {
+            color: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS란?</h1>
+    <p>
+        Cascading Style Sheets의 약자로
+        마크업 언어가 실제 표시되는 방법을 기술하는 언어.<br>
+        (웹 페이지 스타일 지정에 사용되는 언어의 표준(W3C에서 표준으로 지정))
+    </p>
+
+    <hr>
+
+    <h1>CSS 기본 선택자</h1>
+    <p>
+        선택자란?
+        특정한 HTML 태그를 선택할 때 사용하는 기능으로, <br>
+        태그를 선택하여 원하는 스타일과 기능을 적용할 수 있다.
+    </p>
+
+    <hr>
+
+    <h2>모든 요소 선택자 ( * )</h2>
+    <p>선택된 요소 내 모든 태그를 선택할 때 사용</p>
+
+    <hr>
+    <h2>태그 선택자 (태그명)</h2>
+    <p>HTML 문서 내에 같은 태그명을 가진 모든 태그를 선택</p>
+    <pre> p { color : red; } 와 같은 형태로 사용함.</pre>
+
+    <hr>
+    <h2>아이디 선택자 (#)</h2>
+    <p>HTML 문서 내에 해당하는 id 속성 값이 일치하는 태그를 선택</p>
+    <pre> #id속성값 { color : blue; } 와 같은 형태로 사용.</pre>
+    <ol>
+        <li id="id1">아이디 선택자 테스트 1</li>
+        <li id="id2">아이디 선택자 테스트 2</li>
+        <li id="id3">아이디 선택자 테스트 3</li>
+        <li id="id4">아이디 선택자 테스트 4</li>
+        <li id="id5">아이디 선택자 테스트 5</li>
+    </ol>
+    <h3 id="id6">id 속성의 값은 HTML문서 내에서 유일해야함. (식별자 역할)</h3>
+
+    <hr>
+    <h2>클래스 선택자 ( . )</h2>
+    <p> HTML 문서 내에서 동일한 class 속성값을 가진 태그를 선택</p>
+    <pre> .class 속성값{ color : red; } </pre>
+    <ul>
+        <li class="class1">클래스 선택자 테스트1</li>
+        <li class="class2">클래스 선택자 테스트2</li>
+        <li class="class1">클래스 선택자 테스트3</li>
+        <li class="class2">클래스 선택자 테스트4</li>
+        <li class="class1">클래스 선택자 테스트5</li>
+    </ul>
+
+</body>
+
+</html>
