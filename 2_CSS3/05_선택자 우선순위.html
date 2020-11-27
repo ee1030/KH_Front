@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_선택자 우선 순위</title>
+    <style>
+        /* 태그 선택자 */
+        div{
+            width: 300px;
+            /* 최우선 순위 선택자 !important */
+            height: 300px !important;
+            background-color: red;
+        }
+
+        /* 클래스 선택자 */
+        .class1 {
+            background-color: gold;
+            color: white;
+        }
+
+        /* id 선택자 */
+        #test1 {
+            height: 100px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>선택자 우선순위</h1>
+    <p>
+        기본적으로 CSS 속성은 위에서 부터 아래로 차례대로 적용되지만, <br>
+        같은 태그에 여러 CSS 속성이 설정된 경우에는<br>
+        선택자 우선 순위에 따라 스타일이 적용된다.
+    </p>
+    <pre>
+    1순위 : !important 키워드가 붙은 CSS속성.
+    2순위 : inline style 속성. (태그에 직접 작성하는 CSS 속성)
+    3순위 : id 선택자
+    4순위 : class 선택자
+    5순위 : tag 선택자
+    </pre>
+
+    <div id="test1" class="class1" style="font-size: 28px;">
+        우선 순위 테스트
+    </div>
+
+</body>
+</html>
