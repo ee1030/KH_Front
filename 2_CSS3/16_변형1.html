@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>16_변형1</title>
+	<style>
+		img {
+			width: 250px;
+			height: 200px;
+		}
+
+		.trans1:hover {
+			-ms-transform: translateX(50px);
+			/* IE 9 */
+			-webkit-transform: translateX(50px);
+			/* Safari */
+			transform: translateX(50px);
+			/* Standard syntax */
+		}
+
+		.trans2:hover {
+			-ms-transform: translateY(50px);
+			/* IE 9 */
+			-webkit-transform: translateY(50px);
+			/* Safari */
+			transform: translateY(50px);
+			/* Standard syntax */
+		}
+
+		.trans3:hover {
+			-ms-transform: translate(50px, 50px);
+			/* IE 9 */
+			-webkit-transform: translate(50px, 50px);
+			/* Safari */
+			transform: translate(50px, 50px);
+			/* Standard syntax */
+		}
+
+		.trans4:hover {
+			-ms-transform: scaleX(2);
+			/* IE 9 */
+			-webkit-transform: scaleX(2);
+			/* Safari */
+			transform: scaleX(2);
+			/* Standard syntax */
+		}
+
+		.trans5:hover {
+			-ms-transform: scaleY(2);
+			/* IE 9 */
+			-webkit-transform: scaleY(2);
+			/* Safari */
+			transform: scaleY(2);
+			/* Standard syntax */
+		}
+
+		.trans6:hover {
+			-ms-transform: scale(2, 2);
+			/* IE 9 */
+			-webkit-transform: scale(2, 2);
+			/* Safari */
+			transform: scale(2, 2);
+			/* Standard syntax */
+		}
+
+		.trans7:hover {
+			-ms-transform: rotate(45deg);
+			/* IE 9 */
+			-webkit-transform: rotate(45deg);
+			/* Safari */
+			transform: rotate(45deg);
+			/* Standard syntax */
+		}
+
+		.trans8:hover {
+			-ms-transform: skewX(45deg);
+			/* IE 9 */
+			-webkit-transform: skewX(45deg);
+			/* Safari */
+			transform: skewX(45deg);
+			/* Standard syntax */
+		}
+
+		.trans9:hover {
+			-ms-transform: skewY(45deg);
+			/* IE 9 */
+			-webkit-transform: skewY(45deg);
+			/* Safari */
+			transform: skewY(45deg);
+			/* Standard syntax */
+		}
+
+		.trans10:hover {
+			-ms-transform: skew(10deg, 10deg);
+			/* IE 9 */
+			-webkit-transform: skew(10deg, 10deg);
+			/* Safari */
+			transform: skew(10deg, 10deg);
+			/* Standard syntax */
+		}
+	</style>
+</head>
+
+<body>
+	<h1>2차원 변형</h1>
+	<h3>좌우로 움직이기</h3>
+	<img src="sample/image/flower1.png" class="trans1">
+	<hr>
+	<h3>위아래로 움직이기</h3>
+	<img src="sample/image/flower2.png" class="trans2">
+	<hr>
+	<h3>대각선으로 움직이기</h3>
+	<img src="sample/image/flower3.png" class="trans3">
+	<hr>
+	<h3>가로로 확대 축소</h3>
+	<img src="sample/image/flower4.png" class="trans4">
+	<hr>
+	<h3>세로로 확대 축소</h3>
+	<img src="sample/image/flower5.png" class="trans5">
+	<hr>
+	<h3>전체 확대 축소</h3>
+	<img src="sample/image/river1.png" class="trans6">
+	<hr>
+	<h3>지정한 각도만큼 회전</h3>
+	<img src="sample/image/river2.png" class="trans7">
+	<hr>
+	<h3>지정한 각도만큼 가로로 뒤틀기</h3>
+	<img src="sample/image/city1.png" class="trans8">
+	<hr>
+	<h3>지정한 각도만큼 세로로 뒤틀기</h3>
+	<img src="sample/image/tower1.png" class="trans9">
+	<hr>
+	<h3>지정한 각도만큼 전체 뒤틀기</h3>
+	<img src="sample/image/forest1.png" class="trans10">
+	<hr>
+
+
+</body>
+
+</html>

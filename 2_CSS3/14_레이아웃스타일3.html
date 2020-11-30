@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_레이아웃 스타일 3</title>
+
+    <style>
+        .test {
+            /* width / height는 기본적으로 content의 크기를 지정하는 속성 */
+            width: 100px;
+            height: 100px;
+
+            background-color: yellow;
+        }
+
+        /* padding 영역 */
+        .padding-test1 {
+            padding: 100px;
+        }
+
+        .padding-test2 {
+            padding-top: 50px;
+            padding-bottom: 100px;
+            padding-left: 150px;
+            padding-right: 200px;
+        }
+
+        /* border 영역 */
+        .border-test1 {
+            /* border-width: 10px;
+            border-style: solid;
+            border-color: red; */
+
+            /* border 한번에 작성하기 */
+            border : 10px solid red;
+        }
+
+        .ib {
+            display: inline-block;
+        }
+
+        /* margin 영역 */
+        .margin-test1 {
+            margin: 100px;
+        }
+
+        .margin-test2 {
+            margin-top: 50px;
+            margin-left: 120px;
+        }
+
+        .margin-test3 {
+            margin: auto;
+            /* 브라우저가 자동으로 요소간의 간격을 계산해서 가운데로 맞춤 */
+        }
+    </style>
+</head>
+<body>
+    <h1>여백 관련 속성</h1>
+    <h3>기준 div 태그</h3>
+    <div class="test">content</div>
+
+    <h3>padding 영역</h3>
+    <p>
+        content와 테두리(border) 사이의 영역
+    </p>
+    <pre>padding : 100px;</pre>
+    <div class="test padding-test1">content</div>
+    <pre>padding-top|bottom|left|right </pre>
+    <div class="test padding-test2">content</div>
+
+    <hr>
+    <h3>border 영역</h3>
+    <p>요소의 가장자리 영역</p>
+    <div class="test border-test1">content</div>
+
+    <h4>content + padding + border</h4>
+    <div class="test padding-test1 border-test1">content</div>
+
+    <hr>
+    <h3>margin 영역</h3>
+    <p>
+        요소들 간의 간격을 조절하는 영역 
+    </p>
+    <div class="test border-test1 ib margin-test1">content</div><div class="test border-test1 ib margin-test1">content</div>
+    <div class="test border-test1 margin-test1">content</div>
+
+    <hr>
+    <div class="test border-test1 ib margin-test2">content</div><div class="test border-test1 ib margin-test2">content</div>
+    <div class="test border-test1">content</div>
+
+    <hr>
+    <h4>margin : auto</h4>
+    <div class="test border-test1 margin-test3">content</div>
+</body>
+</html>
