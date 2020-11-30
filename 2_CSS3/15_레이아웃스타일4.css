@@ -62,3 +62,92 @@ div { border: 1px solid black; }
     /* 밑줄 제거 */
     text-decoration: none;
 }
+
+/* z-index */
+.wrap { position : relative; }
+
+.z-test3 {
+    background-color: red;
+    width: 150px;
+    height: 150px;
+}
+
+.z-test2 {
+    background-color: green;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 5;
+}
+
+.z-test1 {
+    background-color: yellow;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    z-index: 10;
+}
+
+/* 요소 표시 여부 지정 스타일 */
+.vis-test {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.vis-test1 { background-color: red; }
+.vis-test2 { 
+    background-color: orange;
+    /* 요소를 숨기지만 요소 크기만큼의 공간은 차지함 */
+    visibility: hidden;
+ }
+.vis-test3 { background-color: yellow; }
+.vis-test4 {
+     background-color: green; 
+     /* 요소를 숨김, 공간도 차지하지 않음. */
+     display: none;
+}
+.vis-test5 { background-color: blue; }
+
+.float-test {
+    background-color: powderblue;
+    width: 300px;
+    height: 200px;
+}
+
+.float-left {
+    background-color: yellow;
+    width: 50px;
+    height: 50px;
+    
+    float: left;
+}
+
+/* float 해제 */
+.clear-left {
+    background-color: orangered;
+    clear: left;
+}
+
+.float-right {
+    background-color: pink;
+    width: 50px;
+    height: 50px;
+    
+    float: right;
+}
+
+/* float 해제 */
+.clear-right {
+    background-color: orangered;
+    clear: right;
+}
+
+.clear-both {
+    background-color: orangered;
+    clear: both;
+}
