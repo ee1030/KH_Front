@@ -53,7 +53,7 @@
 
         #div-1 {
             background-color: yellow;
-            border : 10px solid blue;
+            border: 10px solid blue;
 
             /* 가변 크기 == 부모 요소 content 크기에 비례 */
             width: 100%;
@@ -68,7 +68,7 @@
 
         #div-2 {
             background-color: green;
-            border : 10px solid pink;
+            border: 10px solid pink;
 
             /* 가변 크기 == 부모 요소 content 크기에 비례 */
             width: 100%;
@@ -120,8 +120,50 @@
             float: left;
         }
 
-        .div3-1 { background-color: yellow; }
-        .div3-2 { background-color: green; }
+        .div3-1 {
+            background-color: yellow;
+        }
+
+        .div3-2 {
+            background-color: green;
+        }
+
+        /* 4분할 */
+        #wrapper4 {
+            width: 400px;
+            height: 400px;
+        }
+
+        .test4 {
+            box-sizing: border-box;
+        }
+
+        .row {
+            width: 100%;
+            height: 50%;
+        }
+
+        .col {
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+
+        .test4-1 {
+            background-color: yellow;
+        }
+
+        .test4-2 {
+            background-color: pink;
+        }
+
+        .test4-3 {
+            background-color: skyblue;
+        }
+
+        .test4-4 {
+            background-color: greenyellow;
+        }
     </style>
 </head>
 
@@ -198,24 +240,41 @@
              width : 100px; -> content폭 + padding 양쪽 + border 양쪽 = 100px
      -->
 
-     <hr>
+    <hr>
 
-     <h3>div요소 세로 4분할 (서로 비율 다르게(10%, 20%, 30%, 40%))</h3>
+    <h3>div요소 세로 4분할 (서로 비율 다르게(10%, 20%, 30%, 40%))</h3>
 
-     <div id="wrapper2">
-         <div class="dd div-orangered"></div>
-         <div class="dd div-orange"></div>
-         <div class="dd div-yellow"></div>
-         <div class="dd div-green"></div>
-     </div>
+    <div id="wrapper2">
+        <div class="dd div-orangered"></div>
+        <div class="dd div-orange"></div>
+        <div class="dd div-yellow"></div>
+        <div class="dd div-green"></div>
+    </div>
 
-     <hr>
+    <hr>
 
-     <h3>수평 2분할</h3>
-     <div id="wrapper3">
-         <div class="test3 div3-1"></div>
-         <div class="test3 div3-2"></div>
-     </div>
+    <h3>수평 2분할</h3>
+    <div id="wrapper3">
+        <div class="test3 div3-1"></div>
+        <div class="test3 div3-2"></div>
+    </div>
+    
+    <hr>
+
+    <h3>田 모양으로 4분할</h3>
+    <div id="wrapper4">
+        <!-- 폭: 400px, 높이 400px -->
+        <div class="test4 row">
+            <div class="test4 col test4-1"></div>
+            <div class="test4 col test4-2"></div>
+        </div>
+        <div class="test4 row">
+            <div class="test4 col test4-3"></div>
+            <div class="test4 col test4-4"></div>
+        </div>
+    </div>
+
 
 </body>
+
 </html>
