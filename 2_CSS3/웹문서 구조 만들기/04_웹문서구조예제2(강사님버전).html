@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_웹문서 구조 예제2</title>
+
+    <style>
+        /* 모든 태그의 margin 영역을 없앰 */
+        * {
+            margin: 0;
+        }
+
+        /* 
+                * header설정
+            */
+        header {
+            width: 100%;
+            height: 100px;
+        }
+
+
+        /*  로그인 폼 왼쪽 정렬*/
+        #login-form {
+            float: right;
+        }
+
+
+        /*  회사 로고 스타일 */
+        header>img {
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+
+
+        /* 
+            * nav 설정
+            */
+        nav {
+            width: 100%;
+            height: 50px;
+            background-color: #ccc;
+            clear: both;
+        }
+
+        /* nav 메뉴  영역 스타일 설정 */
+        nav>ul>li {
+            width: 15%;
+            display: inline-block;
+            list-style-type: none;
+            line-height: 45px;
+        }
+
+        /* nav 메뉴 글자(a태그) 스타일 설정 */
+        nav>ul>li>a {
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 
+            aside설정
+        */
+        aside {
+            float: left;
+            background-color: #ccc;
+            height: 400px;
+            width: 15%;
+        }
+
+        /*  aside 이미지 */
+        aside>img {
+            width: 100%;
+            height: 100px;
+        }
+
+
+        /* 
+            section설정
+        */
+        section {
+            width: 85%;
+            float: left;
+            height: 400px;
+            background-color: gray;
+        }
+
+        /* 
+            footer설정
+        */
+        footer {
+            clear: both;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-color: #e1dede;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img id='logo1' src="logo1.jpg">
+
+        <form id="login-form" method="POST">
+            <table>
+                <tr>
+                    <td>아이디</td>
+                    <td><input type="text" name="id" id='id'></td>
+                </tr>
+                <tr>
+                    <td>패스워드</td>
+                    <td><input type="password" name="pw" id='pw' /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">로그인</button>
+                        <input type="reset" value="취소" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="#">메인</a></li>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">자유게시판</a></li>
+            <li><a href="#">갤러리</a></li>
+            <li><a href="#">회원관리</a></li>
+            <li><a href="#">채팅하기</a></li>
+        </ul>
+    </nav>
+
+
+    <aside>
+        <img id='logo2' src="logo2.jpg">
+    </aside>
+
+    <section class='content'></section>
+
+
+    <footer>
+        <p align='center'>Copyright ⓒ 1998-2020 KH Information Educational Institute All Right Reserved</p>
+    </footer>
+</body>
+
+</html>
