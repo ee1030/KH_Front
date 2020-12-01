@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_웹문서 구조 예제2</title>
+    <link rel="stylesheet" href="04_웹문서구조예제2.css" type="text/css">
+</head>
+<body>
+    <!-- 
+        시맨틱(Semantic) 태그
+        - 페이지 구조를 특정 기능에 맞는 태그로 사용하여 구분.
+        - 페이지 구조를 쉽게 파악 가능하고
+          좀 더 정확한 정보 검색이 가능하여
+          웹 접근성을 높이는 기술.
+
+        (시맨틱 태그는 div태그가 이름이 바뀐것 뿐이다.)
+    -->
+    <header>
+        <!-- 로고1 -->
+        <img id="logo1" src="logo1.jpg" width="100px" height="100px">
+        <!-- 로그인 -->
+        <table id="login-form">
+            <tr>
+                <td>
+                    아이디
+                </td>
+                <td>
+                    <input type="text" name="userId" id="userId">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    패스워드
+                </td>
+                <td>
+                    <input type="password" name="userPw" id="userPw">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="로그인">
+                    <button type="reset">취소</button>
+                </td>
+            </tr>
+        </table>
+    </header>
+
+    <nav>
+        <!-- 메뉴 작성 -->
+        <ul>
+            <li><a href="#">메인</a></li>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">자유게시판</a></li>
+            <li><a href="#">갤러리</a></li>
+            <li><a href="#">회원관리</a></li>
+            <li><a href="#">채팅하기</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <aside>
+            <img id="logo2" src="logo2.jpg">
+        </aside>
+        <article class="content"></article>
+        <!-- article : 웹페이지 내용이 작성되는 태그. -->
+    </section>
+
+    <footer>
+        Copyright ⓒ 1998-2020 KH Information Educational Institute All Right Reserved
+    </footer>
+</body>
+</html>
