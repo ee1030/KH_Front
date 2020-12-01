@@ -75,6 +75,53 @@
             height: 50%;
             box-sizing: border-box;
         }
+
+        /* 수직 4분할 */
+        #wrapper2 {
+            width: 300px;
+            height: 500px;
+        }
+
+        .dd {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .div-orangered {
+            background-color: orangered;
+            height: 10%;
+        }
+
+        .div-orange {
+            background-color: orange;
+            height: 20%;
+        }
+
+        .div-yellow {
+            background-color: yellow;
+            height: 30%;
+        }
+
+        .div-green {
+            background-color: green;
+            height: 40%;
+        }
+
+        /* 수평 2분할 */
+        #wrapper3 {
+            width: 400px;
+            height: 300px;
+        }
+
+        .test3 {
+            width: 50%;
+            height: 100%;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .div3-1 { background-color: yellow; }
+        .div3-2 { background-color: green; }
     </style>
 </head>
 
@@ -151,6 +198,24 @@
              width : 100px; -> content폭 + padding 양쪽 + border 양쪽 = 100px
      -->
 
-</body>
+     <hr>
 
+     <h3>div요소 세로 4분할 (서로 비율 다르게(10%, 20%, 30%, 40%))</h3>
+
+     <div id="wrapper2">
+         <div class="dd div-orangered"></div>
+         <div class="dd div-orange"></div>
+         <div class="dd div-yellow"></div>
+         <div class="dd div-green"></div>
+     </div>
+
+     <hr>
+
+     <h3>수평 2분할</h3>
+     <div id="wrapper3">
+         <div class="test3 div3-1"></div>
+         <div class="test3 div3-2"></div>
+     </div>
+
+</body>
 </html>
