@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19_트랜지션</title>
+    <style>
+        .test {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: red;
+        }
+
+        /* 마우스 오버(:hover)시 2초의 시간동안 
+          배경색을 노란색으로 변경 */
+
+        .tran1:hover {
+            background-color: yellow;
+            transition-duration: 2s;
+        }
+
+        /* 마우스 오버 해제시 2초의 시간동안
+           원래 색인 빨간색으로 변경 */
+        .tran1 {
+            transition-duration: 2s;
+        }
+
+        /* 마우스 오버 시 배경색을 2초 동안 파란색,
+           너비를 3총동안 200px,
+           높이를 1초동안 200px,
+           한바퀴 회전을 3초동안  */
+
+        .tran2:hover {
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+            transform: rotateZ(360deg);
+
+            /* 트랜지션을 지정할 속성을 선택 */
+            transition-property: background-color, width, height,
+                                    transform;
+            
+            /* 지정된 속성 순서대로 시간 지정 */
+            transition-duration: 2s, 3s, 1s, 3s;
+        }
+
+        .tran2 {
+            /* 트랜지션을 지정할 속성을 선택 */
+            transition-property: background-color, width, height,
+                                    transform;
+            
+            /* 지정된 속성 순서대로 시간 지정 */
+            transition-duration: 2s, 3s, 1s, 3s;
+        }
+
+        /* 트랜지션 진행시간별 속도 지정 */
+        .tran3:hover {
+            width: 300px;
+            background-color: hotpink;
+            transition-duration: 5s;
+            transition-timing-function: ease-in-out;
+        }
+
+        /* 트랜지션 시간 지연 */
+        .tran4:hover {
+            transition-duration: 2s;
+            transform: rotateZ(1800deg);
+
+            transition-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <h1>트랜지션</h1>
+    <p>시간에 따라 웹 요소의 스타일 속성이 조금씩 변화하게 하는 속성</p>
+
+    <div class="test tran1"></div>
+
+    <hr>
+
+    속성별 진행 시간 지정
+    <div class="test tran2"></div>
+
+    <hr>
+
+    트랜지션 진행 시간별 속도 지정
+    <pre>
+    transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cublic-bezier(n,n,n,n)
+    </pre>
+    <div class="test tran3"></div>
+
+    <hr>
+
+    트랜지션 시간 지연
+    <div class="test tran4"></div>
+</body>
+</html>
