@@ -1,0 +1,85 @@
+/* 05_웹문서구조2.html에 사용할 CSS 파일 */
+
+/* div 경계선 확인 + box-sizing 조정 */
+div {
+    border: 1px solid red;
+
+    box-sizing: border-box;
+    /* width, height 속성 값의 적용 범위를 border까지로 지정
+        -> content + padding + border */
+}
+
+/* 전체를 감싸고 있는 div */
+.wrapper {
+    width: 1000px;
+    height: 800px;
+
+    /* 해당 요소를 가로 가운데 정렬 */
+    margin: auto;
+}
+
+/* header */
+.header {
+    width: 100%;
+    height: 20%;
+}
+
+/* header 내부 div 수평 분할 */
+.header-float {
+    height: 100%;
+    float: left;
+}
+
+/* header 내부 div 영역 크기 지정 */
+#header-1 {
+    width: 20%;
+
+    position: relative;
+}
+
+#header-2 {
+    width: 65%;
+}
+
+#header-3 {
+    width: 15%;
+}
+
+/* 홈 로고 스타일 */
+#home-logo {
+    width: 50%;
+    height: auto;
+    /* 기존 이미지 크기에서 width가 절반으로 감소
+        -> height는 width 감소 비율 만큼 자동으로 감소 */
+}
+
+
+/* nav */
+.nav {
+    width: 100%;
+    height: 5%;
+    clear: both;
+}
+
+/* content */
+.content {
+    width: 100%;
+    height: 55%;
+}
+
+/* content 수평분할 */
+.content-flaot {
+    height: 100%;
+    float: left;
+}
+
+/* content 영역 크기 지정 */
+#content-1 { width: 15%; }
+#content-2 { width: 65%; }
+#content-3 { width: 20%; }
+
+/* footer */
+.footer{
+    width: 100%;
+    height: 20%;
+}
