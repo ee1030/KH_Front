@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_로그인 폼 만들기</title>
+    <style>
+        div {
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        #content-3 {
+            width: 200px;
+            height: 440px;
+        }
+
+        #content-login {
+            width: 100%;
+            height: 30%;
+        }
+
+        #login-form {
+            border: 1px solid red;
+
+            width: 100%;
+            height: 80%;
+            box-sizing: border-box;
+        }
+
+        #login-text-area {
+            width: 65%;
+            height: 100%;
+            float: left;
+        }
+
+        #login-btn-area {
+            width: 35%;
+            height: 100%;
+            float: left;
+        }
+
+        #login-text-id {
+            width: 100%;
+            height: 50%;
+        }
+
+        #userId {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #login-text-pw {
+            width: 100%;
+            height: 50%;
+        }
+
+        #userPw {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #login-btn {
+            width: 100%;
+            height: 100%;
+        }
+
+        #login-etc {
+            width: 100%;
+            height: 20%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content-3">
+        <div id="content-login">
+            <form id="login-form" name="login-form" method="get">
+                <div id="login-text-area">
+                    <div id="login-text-id">
+                        <input type="text" id="userId" name="userId" placeholder="ID를 입력하세요.">
+                    </div>
+                    
+                    <div id="login-text-pw">
+                        <input type="password" id="userPw" name="userPw" placeholder="PWD를 입력하세요.">
+                    </div>
+                </div>
+                <div id="login-btn-area">
+                    <button id="login-btn" type="submit">로그인</button>
+                </div>
+            </form>
+            <div id="login-etc">
+                <a href="#">회원가입</a>
+                <a href="#">ID/PWD 찾기</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
