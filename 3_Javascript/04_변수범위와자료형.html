@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_변수 범위와 자료형</title>
+</head>
+<body>
+    <h3>변수 선언</h3>
+    <pre>
+    &lt;script&gt;
+        
+        변수명; // 전역 변수(global)
+
+        var 변수명; // 전역 변수(global)
+
+        function 함수명() {
+
+            변수명; // 전역 변수(global)
+
+            var 변수명; // 지역변수(local)
+        }
+    &lt;/script&gt;
+    </pre>
+
+    <script>
+        // 전역 변수 선언
+        str = "전역 변수";
+        // window라는 창 자체를 나타내는 객체의 필드로 str이 등록됨.
+
+        var str2 = "var 전역 변수";
+        // script 태그 바로 아래 작성된 var가 붙은 변수는 전역 변수가 된다.
+
+        function varTest() {
+            // 전역 변수와 동일한 변수명을 가진 지역 변수 선언.
+            var str = "지역 변수";
+
+            console.log("str 호출");
+            console.log(str);
+            // 동일한 이름의 변수가 있을 경우 지역변수가 우선권을 가짐
+
+            console.log(window.str);
+            console.log(this.str);
+
+            console.log("-----------------------------------------------");
+            
+            console.log("str2 호출");
+            console.log(str2); // var 전역 변수
+            console.log(window.str2); // var 전역 변수
+            console.log(this.str2); // var 전역 변수
+            
+            console.log("-----------------------------------------------");
+            
+            // 새로운 지역변수 추가
+            var str3 = "새로운 지역 변수";
+            
+            console.log("str3 호출");
+            console.log(str3); // 새로운 지역 변수
+            console.log(window.str3); // undefined : 정의 되지 않음
+            console.log(this.str3); // undefined : 정의 되지 않음
+            // 전역 변수로 선언된 str3라는 변수가 정의되지 않음
+
+            console.log("-----------------------------------------------");
+
+            // function 내부에 var 키워드 없이 선언된 변수는 전역 변수가 된다.
+            str4 = "새로운 전역 변수";
+
+            console.log("str4 호출");
+            console.log(str4); // 새로운 전역 변수
+            console.log(window.str4); // 새로운 전역 변수
+            console.log(this.str4); // 새로운 전역 변수
+
+        }
+
+        varTest(); // 함수 호출
+    </script>
+
+    <hr>
+
+    <h3>자바스크립트의 자료형</h3>
+
+    <pre>
+    자바스크립트의 변수는 별도로 자료형을 지정하지 않음.
+        -> 변수에 저장되는 값(리터럴)에 의해서 자료형이 결정됨.
+    </pre>
+
+    <ul>
+        <li>string(문자열) -- "문자열", '문자열', "A", 'A'</li>
+
+        <li>number(숫자) -- 1, 0.123, 9999999999999999</li>
+
+        <li>boolean(논리값) -- true, false</li>
+
+        <li>object(객체) -- 배열(Array), { name : "홍길동" }</li>
+
+        <li>function(함수) -- var t1 = function test() {}</li>
+
+        <li>undefined(정의되지 않은 변수) -- var a;</li>
+    </ul>
+
+    <button type="button" onclick="typeTest();">자료형 테스트</button>
+    <div id="area1"></div>
+    <script>
+        function typeTest() {
+            var area1 = document.getElementById("area1");
+
+            var name = "홍길동"; // string
+            var age = 20; // number
+            var check = true; // boolean
+            var hobbyList = ['게임', '운동', '낚시']; // object
+            var user = { id : "user01" , pwd : "pass01" }; // object
+
+            var fn = function plusNumber(num1, num2) {
+                var sum = num1 + num2;
+                return sum;
+            }
+
+            var undef; // undefined
+
+            // typeof : 값의 자료형을 확인하는 연산자
+            area1.innerHTML = ""; // area1 이전에 있던 내용 삭제
+
+            area1.innerHTML += name + "의 자료형 : " + typeof name + "<br>";
+            area1.innerHTML += age + "의 자료형 : " + typeof age + "<br>";
+            area1.innerHTML += check + "의 자료형 : " + typeof check + "<br>";
+            area1.innerHTML += hobbyList + "의 자료형 : " + typeof hobbyList + "<br>";
+            area1.innerHTML += user + "의 자료형 : " + typeof user + "<br>";
+            area1.innerHTML += fn + "의 자료형 : " + typeof nfnme + "<br>";
+            area1.innerHTML += undef + "의 자료형 : " + typeof undef + "<br>";
+
+            console.log(user.id);
+            console.log(user.pwd);
+
+            console.log(fn(100, 200));
+        }
+    </script>
+
+</body>
+</html>
