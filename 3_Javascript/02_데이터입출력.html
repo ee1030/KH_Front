@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_데이터 입출력</title>
+</head>
+<body>
+    <h2>데이터 출력</h2>
+    <script>
+        // 자바스크립트 코드가 function()에 작성되지 않고
+        // 바로 script 태그 아래 작성되면
+        // 브라우저가 html 코드를 위에서 아래로 순서대로 해석하다가
+        // script 코드를 만나면 바로 해당 코드를 수행함.
+
+        document.write("document.write()로 출력한 내용");
+        // alert("출력문구가 출력되었습니다.")
+    </script>
+
+    <br>
+    <button type="button" onclick="writeFn();">출력</button>
+    <script>
+        function writeFn() {
+            document.write("HTML 문서가 완전히 로드된 후 document.write()를 호출하게 되면"
+                                + " 기존에 HTML문서에 작성되어 있던 내용이 모두 삭제됨.")
+        }
+    </script>
+
+    <hr>
+    <h3>innerHTML / innerText를 이용한 내용 변경</h3>
+    <div id="area1">
+        자바스크립트에서 요소의 내용을 읽거나 변경할 때 innerText라는 속성을 사용함.
+
+        <br><br>
+
+        요소의 내용을 변경할 때 내용에 포함된 태그를
+        실제 태그로 인식시키기 위해서는 innerHTML을 사용해야 함.
+    </div>
+    <button type="button" onclick="check1();">innerText 확인</button>
+    <button type="button" onclick="check2();">innerHTML 확인</button>
+    <script>
+        function check1() {
+
+            // 요소의 아이디가 "area1"인 요소를 선택하여 얻어와
+            // area1이라는 변수에 저장
+            var area1 = document.getElementById("area1");
+            console.log(area1);
+
+            // 얻어온 요소에서 작성된 내용만 얻어와 출력
+            console.log(area1.innerText); // getter
+
+            // 요소의 작성된 내용 변경
+            area1.innerText = "innerText로 인해 내용이 응애로 변화됨."
+            // setter
+        }
+
+        function check2() {
+            var area1 = document.getElementById("area1");
+
+            // innerHTML을 getter로 사용
+            console.log(area1.innerHTML);
+            // getter로 사용 시 innerText와 같은 효과(내용만 읽어옴.)
+
+            // innerHTML을 setter로 사용
+            area1.innerHTML = "<h4>응애</h4>"
+        }
+    </script>
+
+    <hr>
+    <h3>console.log()</h3>
+    <p>
+        브라우저 개발자도구 -> console 화면에 내용을 출력하고자 할 때 사용.
+        (주로 디버깅할 때 사용.)
+    </p>
+
+    <button type="button" onclick="printConsole(10, 20);">console.log 출력</button>
+
+    <script>
+        function printConsole(x, y) {
+            console.log(x + " + " + y + " = " + (x+y));
+        }
+    </script>
+
+    <hr>
+    <h3>window.confirm()을 이용한 데이터 입력</h3>
+    <pre>
+    어떤 질문에 "예 / 아니오"의 결과를 얻고자 할 때 사용함.
+
+    경고창에 "확인", "취소" 버튼이 나타나며
+    "확인" 클릭 시 true / "취소" 클릭 시 false가 반환됨.
+    </pre>
+
+    <div id="area2"></div>
+    <button type="button" onclick="checkSleepy()">쫄?</button>
+
+    <script>
+        function checkSleepy() {
+            // console.log(window.confirm("여기다 출력할 내용 작성"));
+
+            var result = window.confirm("쫄리면 확인, 아니면 취소 ㅎㅎ");
+
+            var str = ""; // 결과를 저장할 빈 문자열 변수
+
+            if(result) { // result는 true || false
+                str = "쫄리면 뒈지시던가 ㅋㅋ";
+            } else {
+                str = "응애...";
+            }
+
+            // 아이디가 area2인 요소를 얻어와 area2 변수에 저장
+            var area2 = document.getElementById("area2");
+
+            // area2에 h3태그로 str에 저장된 내용을 출력 + 글자 빨간색
+            area2.innerHTML = "<h3>" + str + "</h3>"
+
+            area2.style.color = "red";
+
+            /* area2에 글자색을 빨간색으로 하는 방법
+            1) style 태그에서 #area2를 선택하여 색 변경
+            2) inline style을 이용하여 색 변경
+                <h3 style="color: red;">
+            3) 자바스크립트를 이용하여 색 변경
+                area2.style.color = "red";
+            */
+        }
+    </script>
+
+    <hr>
+    <h3>window.prompt()를 이용한 데이터 입력</h3>
+    <pre>
+    텍스트를 적을 수 있는 필드와 확인/취소 버튼이 있는 대화 상자를 출력.
+
+    텍스트를 입력한 후 확인 버튼을 누르면 입력된 텍스트가 반환됨.
+    </pre>
+
+    <div id="area3"></div>
+    <button type="button" onclick="testPrompt()">이름 입력</button>
+
+    <script>
+        function testPrompt() {
+            var name = window.prompt("이름을 입력하세요.");
+            var area3 = document.getElementById("area3");
+
+            if(name != null) {
+                area3.innerHTML =
+                    "<strong>" + name + "</strong>님 환영합니다."
+            }
+        }
+    </script>
+</body>
+</html>
