@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_데이터 형변환</title>
+    <style>
+        .area {
+            border: 1px solid red;
+            height: 220px;
+        }
+    </style>
+</head>
+<body>
+    <h1>데이터 형변환</h1>
+    <!-- 
+        자바스크립트에서 문자열과 숫자 형변환 하는 방법
+        숫자 -> 문자열로 바꾸는 법 : 숫자 + 문자열 = 문자열
+                                ex) 123 + "A" = "123A"
+                                ex) 123 + "" = "123"
+
+        * 자바스크립트 문자열 리터럴 표기법 : "", ''
+        -> "", '' 두 기호를 혼용해서 사용하는 경우 : 
+            인라인 방식의 자바스크립트 함수 호출 시
+            매개변수로 문자열이 포함되는 경우.
+    -->
+
+    <h3>"", '' 혼용 사용</h3>
+    <button type="button" onclick="testFn('응애');">test</button>
+    <script>
+        function testFn(str) {
+            alert(str);
+        }
+    </script>
+
+    <hr>
+
+    <h3>문자열과 숫자의 + 연산</h3>
+    <pre>
+    
+    문자열 + 숫자 = 문자열(이어쓰기)
+    숫자 + 문자열 = 문자열(이어쓰기)
+    숫자 + 숫자 + 문자열 = 숫자가 먼저 계산된 후 문자열로 이어써짐.
+                            (사칙 연산 우선 순위가 적용됨.)               
+    </pre>
+
+    <button type="button" onclick="testPlus()">문자열, 숫자의 +연산</button>
+
+    <div id="area1" class="area"></div>
+
+    <script>
+        function testPlus() {
+            var area1 = document.getElementById("area1");
+
+            area1.innerHTML = ""; // area1의 기존 내용 삭제
+
+            var test1 = 7 + 7; // 14
+            var test2 = 7 + "7"; // 77
+            var test3 = '7' + 7; // 77
+            var test4 = 7 + 7 + "7"; // 147
+            var test5 = 7 + "7" + 7; // 777
+            var test6 = "7" + 7 + 7; // 777
+            var test7 = "7" + (7 + 7); // 714
+
+            area1.innerHTML += "7 + 7 = " + test1 + "<br>";
+            area1.innerHTML += '7 + "7" = ' + test2 + "<br>";
+            area1.innerHTML += "'7' + 7 = " + test3 + "<br>";
+            area1.innerHTML += '7 + 7 + "7" = ' + test4 + "<br>";
+            area1.innerHTML += '7 + "7" + 7 = ' + test5 + "<br>";
+            area1.innerHTML += '"7" + 7 + 7 = ' + test6 + "<br>";
+            area1.innerHTML += '"7" + (7 + 7) = ' + test7 + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>문자열 -> 숫자</h3>
+    <pre>
+    input 태그등을 이용해 입력된 숫자는 숫자가 아닌 문자열로 인식됨
+
+    자바스크립트에서 문자열 -> 숫자로 바꿀 수 있는
+    내장객체 Number()와
+    내장함수 parseInt(), parseFloat()가 있음.
+    </pre>
+
+    <button type="button" onclick="castingTest()">
+        문자열 -> 숫자
+    </button>
+
+    <div id="area2" class="area"></div>
+    <script>
+        function castingTest() {
+            var iNum = 2;
+            var sNum = "3";
+            var fNum = "1.234"
+
+            var test1 = iNum + sNum; // 23
+
+            // 내장객체 Number("문자열로된 숫자") --> 숫자로 형변환
+            var test2 = iNum + Number(sNum); // 5
+
+            // 내장함수 parseInt(), parseFloat();
+            // 매개변수로 "문자열로된 숫자"를 작성.
+            var test3 = iNum + parseInt(sNum); // 5
+            var test4 = iNum + parseFloat(sNum); // 5
+
+            var test5 = iNum + fNum; // 21.234
+                    // 2 + "1.234"
+
+            var test6 = iNum + Number(fNum); // 3.234
+            var test7 = iNum + parseInt(fNum); // 3
+            // parseInt() 수행 시
+            // 소수 부분은 버림 처리 되고 정수 부분만 숫자로 변환됨.
+
+            var test8 = iNum + parseFloat(fNum); // 3.234
+
+            var area2 = document.getElementById("area2");
+
+            area2.innerHTML = "";
+
+            area2.innerHTML += '2 + "3" = ' + test1 + "<br>";
+            area2.innerHTML += '2 + Number("3") = ' + test2 + "<br>";
+            area2.innerHTML += '2 + parseInt("3") = ' + test3 + "<br>";
+            area2.innerHTML += '2 + parseFloat("3") = ' + test4 + "<br>";
+            area2.innerHTML += '2 + "1.234" = ' + test5 + "<br>";
+            area2.innerHTML += '2 + Number("1.234") = ' + test6 + "<br>";
+            area2.innerHTML += '2 + parseInt("1.234") = ' + test7 + "<br>";
+            area2.innerHTML += '2 + parseFloat("1.234") = ' + test8 + "<br>";
+        }
+    </script>
+
+</body>
+</html>
