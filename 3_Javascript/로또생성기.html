@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또생성기</title>
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            border-radius: 50%;
+            line-height: 100px;
+            transition-duration: 2s;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><div class="area"></div></th>    
+            <th><div class="area"></div></th>    
+            <th><div class="area"></div></th>    
+            <th><div class="area"></div></th>    
+            <th><div class="area"></div></th>    
+            <th><div class="area"></div></th>
+        </tr>
+        <tr>
+            <td><br><button type="button" id="btn">로또가즈아</button></td>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById("btn").onclick = function() {
+            var areaArr = document.getElementsByClassName("area");
+
+            var lotto = new Set();
+
+            for(var i=0; i<6; i++) {
+                lotto.add(Math.floor(Math.random()*45+1));
+            }
+
+            var lottoArr = Array.from(lotto).sort(function(a,b){return a-b;});
+
+            for(var i=0; i<lottoArr.length; i++) {
+                areaArr[i].innerHTML = lottoArr[i];
+                if(lottoArr[i] <= 10) {
+                    areaArr[i].style.backgroundColor = "gold";
+                } else if(lottoArr[i] <= 20) {
+                    areaArr[i].style.backgroundColor = "blue";
+                } else if(lottoArr[i] <= 30) {
+                    areaArr[i].style.backgroundColor = "red";
+                } else if(lottoArr[i] <= 40) {
+                    areaArr[i].style.backgroundColor = "gray";
+                } else {
+                    areaArr[i].style.backgroundColor = "green";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
