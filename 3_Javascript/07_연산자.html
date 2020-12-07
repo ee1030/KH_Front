@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_연산자</title>
+    <style>
+        .area {
+            border : 1px solid red;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+    <h1>연산자</h1>
+    <!-- 
+        = : 대입 연산자
+        ==, != : 비교 연산자(동등 비교 연산자)
+            -> 값이 일치하는지를 비교
+
+            ex) 2 == 2 -> true
+            ex) 2 == "2" -> true
+
+        ===, !== : 일치 연산자(동일 비교 연산자)
+            -> 자료형과 값이 모두 일치하는지를 비교
+
+            ex) 2 == 2 -> true
+            ex) 2 == "2" -> false
+    -->
+
+    <button type="button" onclick="opTest();">확인하기</button>
+
+    <h3>동등 비교 연산자(==, !=)</h3>
+    <div id="area1" class="area"></div>
+
+    <h3>동일 비교 연산자(===, !==)</h3>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function opTest() {
+            var num = 1;
+            var sNum = "1";
+
+            var boolT = true;
+            var sBoolT = "true";
+
+            var num0 = 0;
+            var sNum0 = "0";
+
+            var str = "";
+
+            var nullVal = null;
+            var unDef = undefined;
+
+            // 각각 id로 얻어오기
+            // class로 배열로 얻어오기
+            var arr = document.getElementsByClassName("area");
+
+            arr[0].innerHTML = "";
+            arr[1].innerHTML = "";
+
+            // 동등
+            arr[0].innerHTML += '1 == 1 : ' + (num == 1) + "<br>";
+
+            // 동일
+            arr[1].innerHTML += '1 === 1 : ' + (num === 1) + "<br>";
+
+
+            arr[0].innerHTML += '1 == "1" : ' + (num == sNum) + "<br>"
+            arr[1].innerHTML += '1 === "1" : ' + (num === sNum) + "<br>"
+
+            // 1과 true 비교
+            arr[0].innerHTML += '1 == true : ' + (num == boolT) + "<br>"
+            arr[1].innerHTML += '1 === true : ' + (num === boolT) + "<br>"
+
+            // 1과 "true" 비교
+            arr[0].innerHTML += '1 == "true" : ' + (num == sBoolT) + "<br>"
+            arr[1].innerHTML += '1 === "true" : ' + (num === sBoolT) + "<br>"
+
+            // 0과 "0" 비교
+            arr[0].innerHTML += '0 == "0" : ' + (num0 == sNum0) + "<br>"
+            arr[1].innerHTML += '0 === "0" : ' + (num0 === sNum0) + "<br>"
+
+            // 0과 "" 비교
+            arr[0].innerHTML += '0 == "" : ' + (num0 == str) + "<br>"
+            arr[1].innerHTML += '0 === "" : ' + (num0 === str) + "<br>"
+
+            // "0"과 "" 비교
+            arr[0].innerHTML += '"0" == "" : ' + (sNum0 == str) + "<br>"
+            arr[1].innerHTML += '"0" === "" : ' + (sNum0 === str) + "<br>"
+
+            // null과 undefined 비교
+            // null : 참조하는 값이 없다. (자료형은 부여됨.)
+            // undefined : 자료형 x, 참조값도 x
+            arr[0].innerHTML += 'null == undifined : ' + (nullVal == unDef) + "<br>"
+            arr[1].innerHTML += 'null === undifined : ' + (nullVal === unDef) + "<br>"
+
+        }
+    </script>
+
+    <hr>
+
+    <h3>연산자를 이용한 짧은 조건문</h3>
+    <button type="button" onclick="checkCondition();">실행확인</button>
+
+    <script>
+        function checkCondition() {
+            // 프롬프트로 숫자를 입력받아 홀짝 구분
+            var input = Number(window.prompt("숫자를 입력하세요."));
+                // prompt에 입력한 숫자는 자료형이 문자열이다.
+                // -> 숫자 변형을 위해 Number() 내장 객체 사용
+
+                // 짧은 조건문
+                // || : 거짓이면 수행
+                // && : 참이면 수행
+
+                input % 2 == 0 && alert("짝수입니다.")
+                input % 2 == 0 || alert("홀수입니다.")
+        }
+    </script>
+
+</body>
+</html>
