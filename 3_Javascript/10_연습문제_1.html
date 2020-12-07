@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_연습문제_1</title>
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            transition-duration: 2s;
+            border-radius: 20px;
+            line-height: 100px;
+        }
+
+        .inputColor {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
+        </tr>
+        <tr>
+            <th><input type="text" class="inputColor"></th>
+            <th><input type="text" class="inputColor"></th>
+            <th><input type="text" class="inputColor"></th>
+            <th><input type="text" class="inputColor"></th>
+            <th><input type="text" class="inputColor"></th>
+            <th><input type="text" class="inputColor"></th>
+            <th>
+                <select name="color" id="color" class="inputColor">
+                    <option>red</option>
+                    <option>white</option>
+                    <option>blue</option>
+                    <option>magenta</option>
+                    <option>cyan</option>
+                </select>
+            </th>
+        </tr>
+    </table>
+
+    <br>
+
+    <button type="button" id="btn">색변경</button>
+    <button type="button" onclick="reset();">초기화</button>
+    <button type="button" onclick="lotto();">로또</button>
+    
+
+    <script>
+        document.getElementById("btn").onclick = function() {
+
+            var inputArr = document.getElementsByClassName("inputColor");
+            console.log(inputArr[0].value);
+
+            var areaArr = document.getElementsByClassName("area");
+
+            for(var i=0; i<inputArr.length; i++) {
+                areaArr[i].style.backgroundColor = inputArr[i].value;
+            }
+        }
+
+        function reset() {
+            var areaArr = document.getElementsByClassName("area");
+
+            for(var i=0; i<areaArr.length; i++) {
+                areaArr[i].style.backgroundColor = "white";
+            }
+        }
+
+        function lotto() {
+            var areaArr = document.getElementsByClassName("area");
+
+            var lotto = new Array(6);
+
+            for(var i=0; i<lotto.length; i++) {
+                randNum = Math.floor(Math.random()*45+1);
+                if(lotto.indexOf(randNum) == -1) {
+                    lotto[i] = randNum;
+                } else {
+                    i--;
+                }
+            }
+
+            lotto.sort(function(a,b){return a-b;});
+
+            for(var i=0; i<lotto.length; i++) {
+                areaArr[i].innerHTML = lotto[i];
+            }
+        }
+    </script>
+
+</body>
+</html>
