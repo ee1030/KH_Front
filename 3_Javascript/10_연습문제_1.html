@@ -11,7 +11,6 @@
             border: 1px solid black;
             transition-duration: 2s;
             border-radius: 20px;
-            line-height: 100px;
         }
 
         .inputColor {
@@ -56,19 +55,17 @@
 
     <button type="button" id="btn">색변경</button>
     <button type="button" onclick="reset();">초기화</button>
-    <button type="button" onclick="lotto();">로또</button>
-    
 
     <script>
         document.getElementById("btn").onclick = function() {
 
             var inputArr = document.getElementsByClassName("inputColor");
-            console.log(inputArr[0].value);
 
             var areaArr = document.getElementsByClassName("area");
 
             for(var i=0; i<inputArr.length; i++) {
                 areaArr[i].style.backgroundColor = inputArr[i].value;
+                areaArr[i].style.transform = "rotateZ(720deg)";
             }
         }
 
@@ -77,27 +74,7 @@
 
             for(var i=0; i<areaArr.length; i++) {
                 areaArr[i].style.backgroundColor = "white";
-            }
-        }
-
-        function lotto() {
-            var areaArr = document.getElementsByClassName("area");
-
-            var lotto = new Array(6);
-
-            for(var i=0; i<lotto.length; i++) {
-                randNum = Math.floor(Math.random()*45+1);
-                if(lotto.indexOf(randNum) == -1) {
-                    lotto[i] = randNum;
-                } else {
-                    i--;
-                }
-            }
-
-            lotto.sort(function(a,b){return a-b;});
-
-            for(var i=0; i<lotto.length; i++) {
-                areaArr[i].innerHTML = lotto[i];
+                areaArr[i].style.transform = "rotateZ(720deg)";
             }
         }
     </script>
