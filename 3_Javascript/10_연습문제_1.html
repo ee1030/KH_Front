@@ -97,22 +97,24 @@
     <button type="button" onclick="reset();">초기화</button>
 
     <script>
+         var degree = 0;
+
         document.getElementById("btn").onclick = function() {
-
             var inputArr = document.getElementsByClassName("inputColor");
-
             var areaArr = document.getElementsByClassName("area");
+
+            degree += 360;
 
             for(var i=0; i<inputArr.length; i++) {
                 areaArr[i].style.backgroundColor = inputArr[i].value;
-                areaArr[i].style.transform = "rotateZ(720deg)";
+                areaArr[i].style.transform = "rotateZ(" + degree + "deg)";
             }
 
             var radioBtn = document.getElementsByName("color6");
             for(var item of radioBtn){
                 if(item.checked){
                     areaArr[areaArr.length-1].style.backgroundColor = item.value;
-                    areaArr[areaArr.length-1].style.transform = "rotateZ(720deg)";
+                    areaArr[areaArr.length-1].style.transform = "rotateZ(" + degree + "deg)";
                 }
             }
         }
