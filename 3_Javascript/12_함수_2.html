@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12_함수_2</title>
+
+    <style>
+        .area {
+            height: 250px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h3>매개변수로 함수 자료형 전달</h3>
+    <p>
+        자바스크립트에서는 함수도 하나의 자료형이고 변수에 저장 가능함<br>
+        -> 그러므로 매개변수로도 전달 가능함.
+    </p>
+
+    <h4>선언적 함수를 매개변수로 전달</h4>
+    <p>alret창을 10번 출력하는 함수</p>
+    <button type="button" onclick="test1(otherFn);">함수 실행</button>
+    <!-- 
+        함수명만 작성한 경우 : 함수를 변수처럼 사용 ex) otherFn 
+        함수명() 작성한 경우 : 함수를 호출 ex) test1(otherFn);
+    -->
+
+    <script>
+        function otherFn(i) {
+            // 매개변수로 숫자를 하나 전달 받아와
+            // 숫자에 따라 메세지를 다르게 출력
+            var str = "";
+
+            if(i > 5) {
+                str = i + "번 더 클릭하세요.";
+            } else if(i > 1) {
+                str = i + "번 남았습니다!"
+            } else {
+                str = "마지막 한번!";
+            }
+
+            alert(str);
+        }
+
+        function test1(otherFn) {
+            // 함수를 매개변수로 받아
+            // 10 ~ 1까지 1씩 감소하는 for문을 이용하여
+            // 매개변수로 전달받은 함수를 반복 호출
+
+            for(var i=10; i>0; i--) {
+                otherFn(i);
+            }
+        }
+    </script>
+
+    <hr>
+    
+    <h4>익명 함수를 매개변수로 사용</h4>
+    <!-- 
+        익명 함수를 매개변수, 반환 값으로 사용할 경우
+        비동기적 효과를 나타낸다.
+        (동기식 : 줄세워서 순서대로(안전),
+         비동기식 : 동시에 한번에 수행(충돌 위험))
+    -->
+
+    <div id="area1" class="area"></div>
+    <script>
+        // 함수를 매개변수로 받는 함수 정의
+        function test2(otherFn2) {
+            for(var i=1; i<=10; i++) {
+                otherFn2(i);
+            }
+        }
+
+        // test2 함수 호출
+        test2(function(i){
+            document.getElementById("area1").innerHTML 
+                += i + "번째 익명 함수를 호출 함.<br>";
+        });
+    </script>
+
+    <hr>
+
+    <h3>익명 함수를 리턴하는 함수</h3>
+    <pre>
+        익명 함수가 리턴되는 함수를 호출하는 방법
+        ->  함수명()();
+    </pre>
+
+    <input type="text" id="text1" readonly>
+    <button type="button" onclick="test3()();">확인하기</button>
+        <!-- 
+            첫번째 () : test3 함수 호출
+            두번째 () : 반환된 익명함수 호출(실행)
+        -->
+
+    <script>
+        function test3() {
+            return function() {
+                document.getElementById("text1").value = "리턴받은 익명 함수가 호출 됨.";
+            }
+        }
+    </script>
+</body>
+</html>
