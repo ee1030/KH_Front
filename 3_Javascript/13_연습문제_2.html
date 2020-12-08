@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_연습문제_2</title>
+</head>
+<body>
+    <button type="button" id="add">추가</button>
+    <button type="button" id="sum">합</button>
+    <button type="button" id="avg">평균</button>
+    <button type="button" id="reset">초기화</button>
+    <div id="wrapper"></div>
+
+    <script>
+        var count = 0;
+        var wrapper = document.getElementById("wrapper");
+        
+        document.getElementById("add").onclick = function() {
+            var arr = document.getElementsByClassName("numbers");
+
+            var tmpArr = [];
+
+            for(var i of arr) {
+                tmpArr.push(i.value);
+            }
+
+            console.log(tmpArr);
+
+            count++;
+            wrapper.innerHTML += count
+                + '번째 입력 : <input type="number" class="numbers"><br>';
+            
+            var tmpArr2 = document.getElementsByClassName("numbers")
+            for(var i=0; i<tmpArr.length; i++) {
+                tmpArr2[i].value = tmpArr[i];
+            }
+        }
+
+        document.getElementById("sum").onclick = function() {
+            wrapper.innerHTML += "<h3>합계 : " + sum() + "</h3>";
+        }
+
+        document.getElementById("avg").onclick = function() {
+            var arr = document.getElementsByClassName("numbers");
+            wrapper.innerHTML += "<h3>평균 : " + sum()/arr.length + "</h3>";
+        }
+
+        document.getElementById("reset").onclick = function() {
+            count = 0;
+            count++;
+            wrapper.innerHTML = count
+                + '번째 입력 : <input type="number" class="numbers"><br>';
+        }
+
+        function sum() {
+            var sum = 0;
+            var arr = document.getElementsByClassName("numbers");
+
+            for(var item of arr) {
+                sum += Number(item.value);
+            }
+
+            return sum;
+        }
+    </script>
+</body>
+</html>
