@@ -13,12 +13,23 @@
             border-radius: 20px;
         }
 
-        .inputColor {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
+        td{
             width: 100px;
+            vertical-align: top;
+            border-radius: 15%;
         }
+
+        .inputColor{
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+                transition-duration: 2s;
+            }
+
+        .inputColor[type="radio"]{
+                width: initial;
+            }
     </style>
 </head>
 <body>
@@ -32,15 +43,16 @@
             <th><div class="area"></div></th>
             <th><div class="area"></div></th>
             <th><div class="area"></div></th>
+            <th><div class="area"></div></th>
         </tr>
         <tr>
-            <th><input type="text" class="inputColor"></th>
-            <th><input type="text" class="inputColor"></th>
-            <th><input type="text" class="inputColor"></th>
-            <th><input type="text" class="inputColor"></th>
-            <th><input type="text" class="inputColor"></th>
-            <th><input type="text" class="inputColor"></th>
-            <th>
+            <td><input type="text" class="inputColor"></td>
+            <td><input type="text" class="inputColor"></td>
+            <td><input type="text" class="inputColor"></td>
+            <td><input type="text" class="inputColor"></td>
+            <td><input type="text" class="inputColor"></td>
+            <td><input type="text" class="inputColor"></td>
+            <td>
                 <select name="color" id="color" class="inputColor">
                     <option>red</option>
                     <option>white</option>
@@ -48,17 +60,34 @@
                     <option>magenta</option>
                     <option>cyan</option>
                 </select>
-            </th>
-            <th>
-                <input type="text" name="color8" class="inputColor" list="colorList">
+            </td>
+            <td>
+                <input type="text" name="color" class="inputColor" list="colorList">
                 <datalist id="colorList">
-                    <option>red</option>
-                    <option>white</option>
-                    <option>blue</option>
-                    <option>magenta</option>
-                    <option>cyan</option>
+                    <option value="red">빨간색</option>
+                    <option value="orange">주황색</option>
+                    <option value="yellow">노란색</option>
+                    <option value="green">초록색</option>
+                    <option value="blue">파란색</option>
+                    <option value="purple">보라색</option>
                 </datalist>
-            </th>
+            </td>
+            <td>
+                <input type="radio" name="color6" value="red" id="c6-red">
+                <label for="c6-red">빨간색</label><br>
+                <input type="radio" name="color6" value="orange" id="c6-orange">
+                <label for="c6-orange">주황색</label><br>
+                <input type="radio" name="color6" value="yellow" id="c6-yellow">
+                <label for="c6-yellow">노란색</label><br>
+                <input type="radio" name="color6" value="green" id="c6-green">
+                <label for="c6-green">초록색</label><br>
+                <input type="radio" name="color6" value="blue" id="c6-blue">
+                <label for="c6-blue">파란색</label><br>
+                <input type="radio" name="color6" value="purple" id="c6-purple">
+                <label for="c6-purple">보라색</label><br>
+                <input type="radio" name="color6" value="white" id="c6-white" checked>
+                <label for="c6-white">기본</label><br>
+            </td>
         </tr>
     </table>
 
@@ -77,6 +106,14 @@
             for(var i=0; i<inputArr.length; i++) {
                 areaArr[i].style.backgroundColor = inputArr[i].value;
                 areaArr[i].style.transform = "rotateZ(720deg)";
+            }
+
+            var radioBtn = document.getElementsByName("color6");
+            for(var item of radioBtn){
+                if(item.checked){
+                    areaArr[areaArr.length-1].style.backgroundColor = item.value;
+                    areaArr[areaArr.length-1].style.transform = "rotateZ(720deg)";
+                }
             }
         }
 
