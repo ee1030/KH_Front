@@ -19,41 +19,47 @@
         var count = 1;
         var wrapper = document.getElementById("wrapper");
         
+        // 추가 버튼 눌렀을 때
         document.getElementById("add").onclick = function() {
+            // 추가해도 글자 지워지지 않게 미리 저장
             var arr = document.getElementsByClassName("numbers");
-
             var tmpArr = [];
-
             for(var i of arr) {
                 tmpArr.push(i.value);
             }
 
+            // input태그 추가
             count++;
             wrapper.innerHTML += count
                 + '번째 입력 : <input type="number" class="numbers"><br>';
             document.getElementById("printArea").innerHTML = ""; // 결과 삭제
             
+            // 인풋태그 마다 임시 저장했던 숫자 다시 뿌려줌
             var tmpArr2 = document.getElementsByClassName("numbers")
             for(var i=0; i<tmpArr.length; i++) {
                 tmpArr2[i].value = tmpArr[i];
             }
         }
 
+        // 합 버튼 눌렀을 때
         document.getElementById("sum").onclick = function() {
             printArea.innerHTML += "<h3>합계 : " + sum() + "</h3>";
         }
 
+        // 평균 버튼 눌렀을 때
         document.getElementById("avg").onclick = function() {
             var arr = document.getElementsByClassName("numbers");
             printArea.innerHTML += "<h3>평균 : " + sum()/arr.length + "</h3>";
         }
 
+        // 초기화 버튼
         document.getElementById("reset").onclick = function() {
             count = 1;
             document.getElementById("wrapper").innerHTML = '1번째 입력 : <input type="number" class="numbers"><br>';
             document.getElementById("printArea").innerHTML = "";
         }
 
+        // 합계 구하는 함수
         function sum() {
             var sum = 0;
             var arr = document.getElementsByClassName("numbers");
