@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14_객체_1</title>
+    <style>
+        .area {
+            height: 200px;
+            border: 1px solid black;
+            background-color: #92A8D1;
+        }
+
+        .big {
+            height: 300px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>자바스크립트 객체</h1>
+    <pre>
+    - 자바스크립트의 객체는 Key:Value의 형태로 이루어져 있다.
+
+    - 객체는 {}(중괄호, 객체 리터럴 표기법) 또는
+        new 연산자를 이용하여 생성할 수 있고,
+        value에는 모든 자료형이 대입될 수 있다.
+
+    ex)
+    var student1 = { name : "홍길동",
+                     age : 15,
+                     address : "서울시 중구 남대문로"
+                    };
+
+    자바스크립트 객체 표기법(JavaScript Object Notation)
+    </pre>
+    
+    <button type="button" id="btn1">확인하기</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        document.getElementById("btn1").onclick = function() {
+            var product = {
+                pName : '아이폰12',
+                brand : "Apple",
+                option : ["128G", "512G"]
+            }
+
+            var area1 = document.getElementById("area1");
+            area1.innerHTML = "";
+
+            area1.innerHTML += "<b>객체명.속성명으로 접근하기</b><br>";
+            area1.innerHTML += "product.pName = " + product.pName + "<br>";
+            area1.innerHTML += "product.brand = " + product.brand + "<br>";
+            area1.innerHTML += "product.option = " + product.option + "<br>";
+            area1.innerHTML += "product.option[1] = " + product.option[1] + "<br>";
+
+            area1.innerHTML += "<b>객체명['속성명']으로 접근하기</b><br>";
+            area1.innerHTML += "product['pName'] = " + product['pName'] + "<br>";
+            area1.innerHTML += "product['brand'] = " + product['brand'] + "<br>";
+            area1.innerHTML += "product['option'] = " + product['option'] + "<br>";
+        }
+    </script>
+
+    <hr>
+
+    <h3>객체의 메소드 속성</h3>
+    <pre>
+    객체의 속성 중 자료형이 function인 속성을 메소드라고 부른다.
+    </pre>
+
+    <button type="button" id="btn2">확인하기</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        document.getElementById("btn2").onclick = function() {
+            var area2 = document.getElementById("area2");
+
+            var name = "토리";
+
+            var dog = {
+                name : "오이",
+                walk : function(course){
+
+                    // 객체 내에서 자신의 속성을 호출할 때는
+                    // 반드시 this라는 참조변수를 사용해야 한다.
+
+                    // (타 프로그래밍 언어 개발자들이 가장 많이 하는 실수 중 하나)
+                    area2.innerHTML += name + "랑 " + course + "으로 산책을 갔다능<br>"
+                    area2.innerHTML += this.name + "랑 " + course + "으로 산책을 갔다능<br>"
+                }
+            }
+            // dog 객체의 walk 기능 호출
+            dog.walk("청계천")
+        }
+    </script>
+
+    <hr>
+
+    <h3>in / with 키워드</h3>
+    <pre>
+    in : 객체 내부에 특정 속성이 있는지 확인하는 키워드
+
+    with : 코드를 줄여주는 키워드, 객체 호출 시 객체명을 생략 할 수 있게 함.
+    </pre>
+
+    이름 : <input type="text" id="name"><br>
+    국어 : <input type="text" id="kor"><br>
+    영어 : <input type="text" id="eng"><br>
+    수학 : <input type="text" id="mat"><br>
+
+    <button type="button" id="btn3">실행 확인</button>
+    <div id="area3" class="area big"></div>
+
+    <script>
+        document.getElementById("btn3").onclick = function() {
+            var area3 = document.getElementById("area3");
+
+            var student = {
+                name : document.getElementById("name").value,
+                kor : Number(document.getElementById("kor").value),
+                eng : Number(document.getElementById("eng").value),
+                mat : Number(document.getElementById("mat").value)
+            };
+
+            area3.innerHTML = "<b>in 키워드 테스트</b><br>";
+            area3.innerHTML += "name : " + ("name" in student) + "<br>";
+            area3.innerHTML += "kor : " + ("kor" in student) + "<br>";
+            area3.innerHTML += "eng : " + ("eng" in student) + "<br>";
+            area3.innerHTML += "mat : " + ("mat" in student) + "<br>";
+            area3.innerHTML += "sum : " + ("sum" in student) + "<br><br>";
+
+            with(student) {
+                area3.innerHTML += name + "<br>";
+                area3.innerHTML += kor + "<br>";
+                area3.innerHTML += eng + "<br>";
+                area3.innerHTML += mat + "<br>";
+                area3.innerHTML += "합계 : " + (kor + eng + mat) + "<br>";
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>객체의 속성 추가/제거</h3>
+    <pre>
+    처음 객체를 생성한 이후
+    속성을 추가 또는 제거하는 행위를
+    "동적으로 객체 속성 추가/제거" 라고 한다.
+    </pre>
+
+    <button type="button" id="btn4">실행확인</button>
+    <script>
+        document.getElementById("btn4").onclick = function() {
+            // 비어있는 객체 선언
+            var student = {};
+
+            // 빈 객체에 속성 추가
+            student.name = "홍길동";
+            student.hobby = "농구";
+            student.kor = "100";
+            student.mat = "80";
+            // 객체명.속성명 = 값
+            // 객체에 작성한 속성이 없을 경우 알아서 속성이 추가된다.
+
+            console.log(student);
+
+            // 객체 속성 제거
+            delete(student.mat);
+
+            console.log(student);
+        }
+    </script>
+</body>
+</html>
