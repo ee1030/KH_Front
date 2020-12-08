@@ -46,5 +46,27 @@
         }
     </script>
 
+    <hr>
+
+    <button type="button" id="add">추가</button>
+    <button type="button" id="reset">초기화</button>
+    <div id="wrapper"></div>
+
+    <script>
+        var count = 0;
+
+        document.getElementById("add").onclick = function() {
+            count++;
+            document.getElementById("wrapper").innerHTML += count
+                + '번째 숫자 : <input type="number" class="numbers"><br>'
+        }
+
+        document.getElementById("reset").onclick = function() {
+            count = 0;
+            count++;
+            document.getElementById("wrapper").innerHTML = count
+                + '번째 숫자 : <input type="number"><br>'
+        }
+    </script>
 </body>
 </html>
