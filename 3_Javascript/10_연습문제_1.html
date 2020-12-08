@@ -121,10 +121,11 @@
 
         function reset() {
             var areaArr = document.getElementsByClassName("area");
+            degree += 360;
 
             for(var i=0; i<areaArr.length; i++) {
                 areaArr[i].style.backgroundColor = "white";
-                areaArr[i].style.transform = "rotateZ(720deg)";
+                areaArr[i].style.transform = "rotateZ(" + degree + "deg)";
             }
         }
     </script>
