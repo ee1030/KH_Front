@@ -10,10 +10,13 @@
     <button type="button" id="sum">합</button>
     <button type="button" id="avg">평균</button>
     <button type="button" id="reset">초기화</button>
-    <div id="wrapper"></div>
+    <div id="wrapper">
+        1번째 입력 : <input type="number" class="numbers"><br>
+    </div>
+    <div id="printArea"></div>
 
     <script>
-        var count = 0;
+        var count = 1;
         var wrapper = document.getElementById("wrapper");
         
         document.getElementById("add").onclick = function() {
@@ -25,11 +28,10 @@
                 tmpArr.push(i.value);
             }
 
-            console.log(tmpArr);
-
             count++;
             wrapper.innerHTML += count
                 + '번째 입력 : <input type="number" class="numbers"><br>';
+            document.getElementById("printArea").innerHTML = ""; // 결과 삭제
             
             var tmpArr2 = document.getElementsByClassName("numbers")
             for(var i=0; i<tmpArr.length; i++) {
@@ -38,19 +40,18 @@
         }
 
         document.getElementById("sum").onclick = function() {
-            wrapper.innerHTML += "<h3>합계 : " + sum() + "</h3>";
+            printArea.innerHTML += "<h3>합계 : " + sum() + "</h3>";
         }
 
         document.getElementById("avg").onclick = function() {
             var arr = document.getElementsByClassName("numbers");
-            wrapper.innerHTML += "<h3>평균 : " + sum()/arr.length + "</h3>";
+            printArea.innerHTML += "<h3>평균 : " + sum()/arr.length + "</h3>";
         }
 
         document.getElementById("reset").onclick = function() {
-            count = 0;
-            count++;
-            wrapper.innerHTML = count
-                + '번째 입력 : <input type="number" class="numbers"><br>';
+            count = 1;
+            document.getElementById("wrapper").innerHTML = '1번째 입력 : <input type="number" class="numbers"><br>';
+            document.getElementById("printArea").innerHTML = "";
         }
 
         function sum() {
