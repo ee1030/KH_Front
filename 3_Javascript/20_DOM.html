@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20_DOM</title>
+
+    <style>
+        .area {
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM(Document Object Model)</h1>
+    <pre>
+    - HTML 내용이 표시되는 문서 자체를 나타내는 객체.
+
+    - HTML에 작성된 태그들을 구조화(트리 구조)하였을 때
+      각각의 태그 요소들을 노드(Node)라고 한다.
+
+    - 노드 종류 :
+        텍스트노드가 있는 노드(h1, h2, pre, p, div, span, ...)
+
+        텍스트노드가 없는 노드(img, input, hr, br, ...)
+    </pre>
+
+    <hr>
+
+    <h3>텍스트노드가 
+        <span style="font-weight: bold; color: red;">있는 노드</span>
+        생성하기</h3>
+
+    <button type="button" id="btn1">실행확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        document.getElementById("btn1").onclick = function() {
+            // document.getElementById("area1").innerHTML += "<h4>안녕하세요?</h4>";
+
+            var el = document.createElement("h4");
+            // h3요소가 만들어져 el 변수에 저장됨
+            // -> 아직 html문서에는 배치되지 않아
+            //    화면에는 보이지 않음.
+
+            // textnode 생성
+            var text = document.createTextNode("안녕하세요?")
+
+            // 노드 연결
+            el.appendChild(text);
+            // el(h4태그) 내부에 text("안녕하세요?")를 content 마지막에 추가
+            // -> <h4>안녕하세요?</h4> 형태의 요소가 완성됨.
+
+            // 완성된 요소 el을 area1의 content 마지막에 추가하기
+            document.getElementById("area1").appendChild(el);
+        }
+    </script>
+
+    <hr>
+
+    <h3>텍스트노드가 
+        <span style="color: red;">없는 노드</span>
+        생성</h3>
+
+    <button type="button" id="btn2">응애버튼</button>
+    <div id="area2" class="area">
+        <!-- <img src="logo.jpg" width="200" height="100"> -->
+    </div>
+    <script>
+        document.getElementById("btn2").onclick = function() {
+
+            // img 요소 생성
+            var img = document.createElement("img");
+
+            // 생성된 img 요소에 속성 추가
+            img.src = "logo.jpg";
+            img.width = "200";
+            img.height = "100";
+
+            // img에 없는 속성 추가해보기
+            // img.myProperty = "aaa"; -> 추가 안됨
+            img.setAttribute("myProperty2", "bbb");
+
+            // area2 요소와 img요소 노드 연경
+            document.getElementById("area2").appendChild(img);
+
+        }
+    </script>
+
+    <hr>
+    <h3>노드 삭제</h3>
+    <pre>
+    remove() : 해당 노드(요소) 제거
+    </pre>
+    <button type="button" id="btn3">노드삭제</button>
+
+    <script>
+        document.getElementById("btn3").onclick = function() {
+            document.getElementById("area2").lastChild.remove();
+            // lastChile : 요소의 마지막 자식을 선택
+        }
+    </script>
+
+    <hr>
+
+    <h3>노드 추가/삭제</h3>
+
+    <button type="button" id="add">추가</button>
+    <button type="button" id="sum">합계</button>
+
+    <table>
+        <tbody id="wrapper">
+            <tr>
+                <td>입력 : </td>
+                <td>
+                    <input type="number" class="inputNumbers">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="printArea"></div>
+
+    <script>
+        // 추가버튼 클릭시
+        document.getElementById("add").onclick = function() {
+
+            var tr = document.createElement("tr");
+
+            var td1 = document.createElement("td");
+            // td1에 textnode("입력 : ") 추가
+            var text = document.createTextNode("입력 : ");
+            td1.appendChild(text);
+
+            // td2에 input 요소 추가
+            var td2 = document.createElement("td");
+            var input = document.createElement("input");
+
+            // input 태그에 필요한 속성 추가
+            input.setAttribute("type", "number");
+            input.setAttribute("class", "inputNumbers");
+            
+            td2.appendChild(input);
+
+            // td3에 button 요소 추가
+            var td3 = document.createElement("td");
+            var btn = document.createElement("button");
+
+            // button 태그에 필요한 속성 추가
+            btn.setAttribute("type", "button");
+            btn.setAttribute("onclick", "deleteRow(this);");
+            // deleteRow(this)에서 this란 ?
+            // -> onclick 이벤트가 발생한 요소 
+            // --> 쉽게 말해서 클릭된 버튼 자체
+
+            // button에 삭제 textnode 추가
+            btn.appendChild(document.createTextNode("삭제"));
+
+            td3.appendChild(btn);
+
+            // tr에 추가
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+
+            document.getElementById("wrapper").appendChild(tr);
+        }
+
+        // 삭제 함수
+        function deleteRow(btn) {
+            // btn -> 클릭된 버튼 요소
+            // .parentNode : 해당 요소의 부모 요소 선택
+            console.log(btn); // 삭제버튼
+            console.log(btn.parentNode); // td
+            console.log(btn.parentNode.parentNode); // tr
+
+            btn.parentNode.parentNode.remove();
+        }
+
+        document.getElementById("sum").onclick = function() {
+            var sum = 0;
+
+            var numbers = document.getElementsByClassName("inputNumbers");
+
+            for(var i of numbers) {
+                sum += Number(i.value);
+            }
+
+            var h3 = document.createElement("h3");
+            var text = document.createTextNode("합계는 : "+ sum);
+            h3.appendChild(text);
+
+            document.getElementById("printArea").appendChild(h3);
+        }
+    </script>
+
+</body>
+</html>
