@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_연습문제_3</title>
+    <style>
+        div {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 700px;
+            height: 500px;
+        }
+
+        .area {
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+
+        #right > label {
+            width: 60px;
+            display: inline-block;
+            /* label 태그는 원래 inline 형식이기 때문에 width가 적용 안됨 
+                -> inline-block으로 변경하여 width를 적용 가능하게 함. */
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .wrapper > h3 {
+            margin-left: 50px;
+        }
+
+        tr > th:first-of-type {
+            /* tr 자식 요소 중 첫번째 th 태그 */
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h3>학생 점수 관리 프로그램</h3>
+        <div id="left" class="area">
+            <table id="stdTB" border="1">
+                <tr>
+                    <th>이름</th>
+                    <th>Java</th>
+                    <th>Oracle</th>
+                    <th>JDBC</th>
+                    <th>HTML</th>
+                    <th>합계</th>
+                    <th>평균</th>
+                </tr>
+            </table>
+        </div>
+        <div id=right class="area">
+            <label for="sName">이름 : </label>
+            <input type="text" name="sName" id="sName" class="stdInfo"><br>
+            
+            <label for="Java">Java : </label>
+            <input type="number" name="Java" id="Java" class="stdInfo"><br>
+
+            <label for="Oracle">Oracle : </label>
+            <input type="number" name="Oracle" id="Oracle" class="stdInfo"><br>
+
+            <label for="JDBC">JDBC : </label>
+            <input type="number" name="JDBC" id="JDBC" class="stdInfo"><br>
+
+            <label for="HTML">HTML : </label>
+            <input type="number" name="HTML" id="HTML" class="stdInfo">
+
+            <button type="button" id="add">추가</button>
+        </div>
+    </div>
+
+    <script>
+        function Score(stdInfo) {
+            this.name = stdInfo[0].value;
+            this.java = Number(stdInfo[1].value);
+            this.oracle = Number(stdInfo[2].value);
+            this.jdbc = Number(stdInfo[3].value);
+            this.html = Number(stdInfo[4].value);
+
+
+            this.getSum = function() {
+                return this.java + this.oracle + this.jdbc + this.html;
+            }
+
+            this.getAvg = function() {
+                return this.getSum() / 4;
+            }
+        }
+
+        document.getElementById("add").onclick = function() {
+            var stdInfo = document.getElementsByClassName("stdInfo");
+
+            var score = new Score(stdInfo);
+
+            var stdTB = document.getElementById("stdTB");
+
+            with(score) {
+                stdTB.innerHTML 
+                    += '<tr><td>' + name + '</td><td>'
+                        + java +"</td><td>"
+                        + oracle +"</td><td>"
+                        + jdbc +"</td><td>"
+                        + html +"</td><td>"
+                        + getSum() +"</td><td>"
+                        + getAvg() +"</td></tr>";
+            }
+
+            for(var score of stdInfo) {
+                score.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
