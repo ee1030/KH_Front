@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21_이벤트</title>
+
+    <style>
+        .area {
+            height: 100px;
+            border: 1px solid black;
+            background-color: #F7CAC9;
+        }
+
+        pre {
+            font-size: 14px;
+            border: 1px dashed black;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <pre>
+    이벤트 : 동작, 행위 ex) click
+
+    이벤트 리스너(또는 이벤트 핸들러)
+        : 이벤트가 발생하는 것을 대기하고 있다가
+          이벤트 발생 시 연결해둔 기능(function)을 수행하는 코드
+
+    이벤트 객체 : 발생한 이벤트에 대한 정보를 담고있는 객체
+        (이벤트 발생 좌표, 이벤트 발생 요소 정보, 시간 등등)
+    </pre>
+
+    <hr>
+
+    <h3>고전 이벤트 모델</h3>
+    <pre>
+    요소 객체가 가지고 있는 이벤트 속성에 이벤트 핸들러를 연결하는 방법으로
+    특정 이벤트를 제거하고 싶을 때는
+    on이벤트명 에 null 값을 대입하면 된다.
+    </pre>
+    <button type="button" id="test1">이벤트 수행</button>
+    <button type="button" id="test2">이벤트 삭제</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        var test1 = document.getElementById("test1");
+        var test2 = document.getElementById("test2");
+        var area1 = document.getElementById("area1");
+
+        // 고전 이벤트 모델
+        test1.onclick = function() {
+            area1.innerHTML = "이벤트 수행 버튼이 클릭되서 연결된 기능이 수행됨.";
+        }
+
+        test2.onclick = function() {
+            area1.innerHTML = "이벤트 수행 버튼의 이벤트 핸들러를 삭제시킴";
+
+            test1.onclick = null;
+        }
+    </script>
+    <hr>
+
+    <h3>이벤트 객체</h3>
+    <pre>
+    이벤트 객체는 이벤트 발생 시
+    이벤트 핸들러에 작성된 함수의 매개변수(e 또는 window.event)로
+    발생한 이벤트 정보를 전달함.
+
+    이벤트 핸들러 내부에서 e.target 또는 this를 이용하여
+    이벤트가 발생한 요소를 선택할 수 있음.
+    </pre>
+
+    <button type="button" id="test3">실행하기</button>
+    <script>
+        document.getElementById("test3").onclick = function(e) {
+            // e : 이벤트 객체
+            // == window.event (보통 ie 8버전 이전 브라우저에서 사용함.)
+            var event = e || window.event;
+
+            // 이벤트 객체에 있는 모든 정보 확인
+            console.log(event);
+
+            console.log(event.target);
+            console.log(this);
+            // 이벤트 핸들러 내에서 this는 이벤트가 발생한 요소를 나타냄.
+
+            // 이벤트가 발생한 요소의 배경색을 red로 변경
+            event.target.style.backgroundColor = "red";
+            
+            // 이벤트가 발생한 요소의 글자색을 white로 변경
+            this.style.color = "white";
+        }
+    </script>
+
+    <hr>
+
+    <h3>인라인 이벤트 모델</h3>
+    <pre>
+    요소 내부에 이벤트를 작성하는 방법으로
+    요소 내부에 on이벤트명 = 함수명(); 을 통해
+    script에 작성된 함수를 호출하는 방식을 선호함.
+    </pre>
+    <button type="button" onclick="test3();">실행확인</button>
+    <script>
+        function test3() {
+            alert("인라인 모델 응애 이벤트 모델 응애 확인 응애");
+        }
+    </script>
+
+    <hr>
+
+    <h3>window.onload 이벤트 핸들러</h3>
+    <pre>
+    - HTML 문서의 모든 요소가 로딩이 완료되면
+      브라우저가 발생시키는 이벤트
+
+    - 문서의 로딩이 완료된 후 수행되어야 하는 기능이 있을 경우 사용.
+    ex) 스크립트 코드보다 뒤쪽에 작성된 요소를 얻어와야될 경우.
+
+    - window.onload = function(){} 또는
+    &lt;body onload="함수명();"&gt; 둘 중 하나로 사용 가능.
+
+    - onload는 HTML 문서 당 한번만 작성 할 수 있음.
+    </pre>
+
+    <script>
+        // HTML은 위에서 아래로 순차적으로 해석되는데
+        // area4가 해석되지 않은 상태에서 내용을 얻어오려고 했기 때문에
+        // 에러가 발생함.
+        // console.log(document.getElementById("area4").innerText);
+
+        // --> window.onload로 해결
+        window.onload = function() {
+            console.log(document.getElementById("area4").innerText);
+        }
+    
+    </script>
+
+    <div id="area4">window.onload 테스트 중</div>
+
+    <hr>
+
+    <h3>기본 이벤트 제거</h3>
+    <pre>
+    기본 이벤트란?
+    html 태그에 기본적으로 부여되어 있는 기능, 행위, 동작을 나타냄.
+    ex) submit 버튼
+        -> form 태그 내부에 있는 submit 버튼 클릭 시
+           form 태그에 작성된 action 주소로
+           input 태그 값들을 전송하고 페이지를 갱신함.
+           (입력 양식 제출 후 페이지 갱신)
+    
+    - 기본 이벤트 제거 방법
+    이벤트 핸들러의 리턴값을 false로 만들면 됨.
+    </pre>
+
+    <form method="post" onsubmit="return validate();">
+        비밀번호 : <input type="password" name="pwd1" id="pwd1"><br>
+        비밀번호 확인 : <input type="password" name="pwd2" id="pwd2"><br>
+        <button type="submit">제출</button>
+    </form>
+
+    <script>
+        function validate() { // 비밀번호 유효성 검사
+            var pwd1 = document.getElementById("pwd1");
+            var pwd2 = document.getElementById("pwd2");
+        
+            // 1) 입력이 되었는가
+            if(pwd1.value.trim().length == 0) {
+                // .trim() : 문자열 양쪽 공백 제거
+                alert("비밀번호를 입력해주세요.");
+                pwd1.focus(); // pwd1 요소에 커서를 옮겨둠.
+                return false;
+            }
+
+            if(pwd2.value.trim().length == 0) {
+                // .trim() : 문자열 양쪽 공백 제거
+                alert("비밀번호 확인을 입력해주세요.");
+                pwd2.focus(); // pwd2 요소에 커서를 옮겨둠.
+                return false;
+            }
+
+            // 2) 비밀번호 양식에 맞게 작성되었는가 - 정규표현식
+
+
+            // 3) 비밀번호, 비밀번호 확인이 일치하는가
+            if(pwd1.value != pwd2.value) {
+                alert("비밀번호가 일치하지 않습니다.");
+                pwd2.focus();
+                return false;
+            }
+        }
+    </script>
+
+    <hr>
+    <h3>표준 이벤트 모델(addEventListener)</h3>
+    <pre>
+    - w3c에서 공식적으로 지정한 이벤트 모델
+
+    - 한 요소에 여러 이벤트 핸들러(리스너)를 설정할 수 있음.
+
+    - ie9 버전 이상부터 사용 가능.
+    </pre>
+
+    <button id="btn1">고전 이벤트 모델 방식</button>
+    <button id="btn2">표준 이벤트 모델 방식</button>
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+        var btn2 = document.getElementById("btn2");
+
+        // 고전 이벤트 모델
+        btn1.onclick = function() {
+            alert("고전 이벤트 모델 방식 테스트");
+        }
+
+        btn1.onclick = function() {
+            btn1.style.backgroundColor = "red";
+        }
+        // 앞서 작성된 alert 이벤트 핸들러가 사라지고
+        // 마지막에 작성된 배경색 변경 이벤트 핸들러만 남음.
+
+        // 표준 이벤트 모델
+        btn2.addEventListener("click", function(){
+            alert("표준 이벤트 모델 방식 테스트");
+        });
+
+        btn2.addEventListener("click", function(){
+            btn2.style.backgroundColor = "yellow";
+        });
+        // 작성한 두 이벤트 핸들러가 모두 정상 동작 함.
+    </script>
+
+</body>
+</html>
