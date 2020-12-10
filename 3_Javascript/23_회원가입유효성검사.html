@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23_회원가입유효성검사</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>회원가입 유효성 체크</h1>
+
+    <form action="" method="post" onsubmit="return validate();">
+        <!-- 제출시 행동 -->
+        <!-- required : 필수입력 속성 -->
+
+        <label for="userid">* 유저아이디</label>
+        <input type="text" name="userid" id="userid" required><br>
+
+        <label for="pass">* 비밀번호</label>
+        <input type="password" name="pass" id="pass" required><br>
+
+        <label for="pass1">* 확인</label>
+        <input type="password" name="pass1" id="pass1" required><br>
+
+        <label for="name">* 이름</label>
+        <input type="text" name="name" id="name" required><br>
+
+        <label for="email">* 이메일</label>
+        <input type="text" name="email" id="email" required><br>
+        <br>
+
+        <label for="tel1">전화번호</label>
+        <input type="text" name="tel1" id="tel1" maxlength="3" size="3">-
+        <input type="text" name="tel2" id="tel2" maxlength="4" size="4">-
+        <input type="text" name="tel3" id="tel3" maxlength="4" size="4">
+        <br><br>
+
+        <label for="job">직업</label>
+        <select name="job" id="job">
+            <option>개발자</option>
+            <option>프로그래머</option>
+            <option>자영업자</option>
+        </select>
+        <br><br>
+
+        <label for="gender">성별</label>
+        <input type="radio" name="gender" value="m"> 남
+        <input type="radio" name="gender" value="f"> 여
+        <br><br>
+
+        취미<br>
+        <input type="checkbox" name="hobby" value="reading"> 독서
+        <input type="checkbox" name="hobby" value="drama"> 드라마보기
+        <input type="checkbox" name="hobby" value="soccer"> 축구
+        <br>
+        <input type="checkbox" name="hobby" value="movie"> 영화보기
+        <input type="checkbox" name="hobby" value="basket"> 드라마보기
+        <input type="checkbox" name="hobby" value="game"> 게임<br>
+        <br><br>
+        <input type="reset" value="리셋">
+        <input type="submit" value="완료">
+    </form>
+
+    <script>
+        function validate() { // 유효성 검사
+            var userid = document.getElementById("userid");
+            var pass = document.getElementById("pass");
+            var pass1 = document.getElementById("pass1");
+            var name = document.getElementById("name");
+            var email = document.getElementById("email");
+            var tel1 = document.getElementById("tel1");
+            var tel2 = document.getElementById("tel2");
+            var tel3 = document.getElementById("tel3");
+
+            // 아이디 : 첫 글자는 소문자, 대/소문자 + 숫자로 총 4~12글자
+            var regExp = /^[a-z][a-zA-z\d]{3,11}$/;
+
+            if(!regExp.test(userid.value)) {
+                // 입력된 id가 정규식에 매칭되지 않으면
+                alert("아이디는 첫 글자는 소문자, 대/소문자 + 숫자로 총 4~12글자로 입력해야합니다.");
+                userid.focus();
+                return false;
+            }
+
+            // 비밀번호 : 대/소문자 + 숫자 + 특수기호(!@#$%), 총 8~12글자
+            //      + 비밀번호 확인과 일치하는지도 판별
+            regExp = /^[a-zA-z\d!@#$%]{8,12}$/;
+
+            if(!regExp.test(pass.value)) {
+                // 비밀번호가 정규식에 매칭 되지 않으면
+                alert("비밀번호 : 대/소문자 + 숫자 + 특수기호(!@#$%), 총 8~12글자로 입력해야합니다.");
+                pass.focus(); 
+                return false;
+            } else {
+                if(pass.value != pass1.value) {
+                    alert("비밀번호가 일치하지 않습니다.");
+                    pass1.focus();
+                    return false;
+                }
+            }
+
+            // 이름 : 한글 2~5글자
+            regExp = /^[가-힣]{2,5}$/;
+
+            if(!regExp.test(name.value)) {
+                alert("이름은 한글 2~5글자로 입력해야 합니다.");
+                name.focus();
+                return false;
+            }
+
+            // 이메일 : /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/
+            regExp = /^[\w]{4,}@[\w]+(\.[\w]+){1,3}$/;
+
+            if(!regExp.test(email.value)) {
+                alert("이메일 형식이 알맞지 않습니다.");
+                email.focus(); 
+                return false;
+            }
+            
+            // 전화번호 : 
+            // - 앞자리 : 010,011,016,017,019
+            // - 중간자리 : 아무 숫자 3~4 글자
+            // - 끝자리 : 아무숫자 4글자
+            if(!(/^01[01679]$/.test(tel1.value) && 
+                    /^\d{3,4}$/.test(tel2.value) &&
+                    /^\d{4}$/.test(tel3.value))) {
+                // 전화번호 중 하나라도 매칭되지 않는 경우
+                alert("전화번호 형식이 알맞지 않습니다.");
+                tel3.focus();
+                return false;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
