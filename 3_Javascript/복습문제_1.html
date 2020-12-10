@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>복습문제_1</title>
+    <style>
+        #printArea {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+    fieldset, legend를 사용하여 입력, 출력 영역을 나누고
+    출력 영역에는 id 속성값이 printArea인 div를 추가
+
+    id가 printArea인 요소에 height를 100px로 설정
+
+    입력 영역에 이름, 나이, 주소를 입력받는 input 태그와
+    "입력" 버튼을 추가
+
+    입력 버튼 클릭시 inputFn() 함수가 호출 됨.
+
+    inputFn()은 입력받은 이름, 나이, 주소를
+    전역변수로 선언된 info라는 변수에 객체 형태로 저장되어야 한다.
+
+    출력 영역 하단에는
+    "출력", "초기화" 버튼을 작성
+
+    "출력" 버튼 클릭 시 printFn() 함수가 호출되며
+    id가 printArea인 영역에 전역변수 info에 저장된 값이 모두 출력됨.
+    이름 : xxx
+    나이 : xxx
+    주소 : xxx
+
+    단, 입력이 되지 않은 상태에서 출력버튼을 클릭할 경우
+    경고창으로 "입력부터 진행해주세요."를 출력
+
+    "초기화" 버튼에 id 속성값으로 "resetBtn"을 추가하고
+    "초기화" 버튼이 클릭된 경우
+    전역변수 info를 정의되지 않은 상태로 변경하고,
+    id가 printArea인 영역에 출력된 값을 모두 삭제.
+    </pre>
+
+    <hr>
+
+    <fieldset>
+        <legend>입력</legend>
+        이름 : <input id="name" class="inputInfo"><br>
+        나이 : <input type="number" id="age" class="inputInfo"><br>
+        주소 : <input id="addr" class="inputInfo"><br>
+        <button type="button" onclick="inputFn();">입력</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>출력</legend>
+        <div id="printArea"></div>
+        <button type="button" onclick="printFn();">출력</button>
+        <button type="button" id="resetBtn">초기화</button>
+    </fieldset>
+
+    <script>
+        var info;
+
+        function Person(inputInfo) {
+            this.name = inputInfo[0].value;
+            this.age = inputInfo[1].value;
+            this.addr = inputInfo[2].value;
+        }
+
+        function inputFn() {
+            // inputFn()은 입력받은 이름, 나이, 주소를
+            // 전역변수로 선언된 info라는 변수에 객체 형태로 저장되어야 한다.
+            info = new Person(document.getElementsByClassName("inputInfo"));
+        }
+
+        function printFn() {
+            if(info != undefined) {
+                document.getElementById("printArea").innerHTML
+                    = "이름 : " + info.name + "<br>"
+                    + "나이 : " + info.age + "<br>"
+                    + "주소 : " + info.addr + "<br>";
+            } else {
+                alert("입력부터 진행해주세요.");
+            }
+        }
+
+        document.getElementById("resetBtn").onclick = function() {
+            info = undefined;
+            document.getElementById("printArea").innerHTML = "";
+
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("addr").value = "";
+        }
+    </script>
+</body>
+</html>
