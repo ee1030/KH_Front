@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<title>07_순회(탐색) 메소드_2</title>
+	<style>
+		.wrap * {
+			border: 1px solid lightgray;
+			display: block;
+			padding: 5px;
+			margin: 15px;
+			color: gray;
+		}
+
+		.type {
+			width: 500px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>순회(탐색) 메소드</h1>
+	<h3>descendants(자손, 후손) 메소드 : 선택된 요소의 하위 요소들을 선택할 수 있는 메소드</h3>
+	<pre>
+	$('요소명').children([매개변수]) 
+	 - 선택된 요소의 모든 자식 객체 리턴
+	 - 매개변수가 있으면 매개변수와 일치하는 자식 객체만 리턴
+
+	$('요소명').find(매개변수)
+	 - 선택된 요소의 인자와 일치하는 모든 후손 객체 리턴
+	</pre>
+
+	<div class="wrap">
+		<div class="type">div (great-grand parent)
+			<ul>ul (grand parent)
+				<li>li (direct parent)
+					<span>span</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="type">div (grandparent)
+			<p>p (direct parent)
+				<span>span</span>
+			</p>
+		</div>
+	</div>
+
+	<script>
+        // .css()의 매개변수로 스타일을 작성하는것 깔끔하지 않으므로
+        // 별도로 객체를 미리 생성해둠.
+        var style1 = {"color":"red", "border":"2px solid red"};
+        var style2 = {"color":"blue", "border":"2px solid blue"};
+        var style3 = {"color":"green", "border":"2px solid green"};
+        var style4 = {"color":"orange", "border":"2px solid orange"};
+        var style5 = {"color":"purple", "border":"2px solid purple"};
+
+        // children() : 선택된 요소 바로 아래 요소(자식) 선택
+        // 클래스가 wrap인 요소의 바로 아래 자식의 스타일을 style1로 설정
+        $(".wrap").children().css(style1);
+
+        // 클래스가 wrap인 요소의 자식의 자식 스타일을 style2로 설정
+        $(".wrap").children().children().css(style2);
+
+        // children("선택자")
+        // 선택된 요소의 자식 중 "선택자"인 자식만 선택
+        // 클래스가 wrap인 요소의 자식의 자식 중 ul 태그만
+        // 스타일을 style3으로 설정
+        $(".wrap").children().children("ul").css(style3);
+
+        // 클래스가 wrap인 요소의 후손 중
+        // li태그의 스타일을 style4로 설정(children()만 사용)
+        $(".wrap").children().children().children("li").css(style4);
+
+        // find("선택자") : 선택된 요소의 후손 중 선택자와 일치하는 모든 후손을 선택
+        // 클래스가 wrap인 요소의 후손 중 span 태그의 스타일을 style5로 설정
+        $(".wrap").find("span").css(style5);
+
+	</script>
+
+</body>
+
+</html>
