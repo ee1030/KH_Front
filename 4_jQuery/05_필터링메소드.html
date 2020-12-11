@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_필터링 메소드</title>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h3>필터링 메소드</h3>
+    <pre>
+    선택자로 지정한 요소 그룹 내에서
+    특정 위치 또는 특정 요소만을 선택하는 jQuery 메소드
+    </pre>
+
+    <h4 class="test">test-1</h4>
+    <h4 class="test">test-2</h4>
+    <h4 class="test">test-3</h4>
+    <h4 class="test">test-4</h4>
+    <h4>test-5</h4>
+    <h4 class="test">test-6</h4>
+    <h5 class="test">test-7</h5>
+
+    <script>
+        $(function(){
+            // filter() 메소드
+            // 매개변수에 작성된 선택자와 일치하는 요소를 선택
+
+            // test 클래스를 가진 요소 중
+            // 인덱스 번호가 짝수번째인 요소의 
+            // 배경색을 tomato, 글자색을 white로 변경
+            $(".test").filter(":even").css({"backgroundColor" : "tomato", "color" : "white"});
+
+            // 함수를 매개변수로 하는 filter() 메소드
+            $(".test").filter(function(index){
+                // index : test 클래스 요소의 index 번호가 순차적으로 접근됨.
+                return index % 2 == 1;
+            }).css({"backgroundColor" : "yellowgreen", "color" : "white"});
+
+            // h4 태그 요소 중 첫 번째 요소의
+            // 글씨 크기를 2배로 변경
+            // first() : 선택된 요소 중 첫번째 요소 선택
+            $("h4").first().css("font-size", "2em");
+
+            // h4 태그 요소 중 마지막 요소의
+            // 내용을 "마지막 h4 태그 요소"로 변경
+            $("h4").last().text("마지막 h4 태그 요소");
+
+            // text("내용") : 선택한 요소의 content를 "내용" 으로 변경
+
+            // eq(index) 메소드 : index번째 요소를 선택
+
+            // h4태그 중 3번째 인덱스 요소에 배경색을 blue로 변경
+            $("h4").eq(3).css("backgroundColor", "blue");
+
+            // not("선택자") : 그룹 내에서 "선택자" 요소를 제외한 요소 선택
+            // h4 태그 중 클래스가 test가 아닌 요소의 배경색을 yellow로 변경
+
+            $("h4").not(".test").css("backgroundColor", "yellow");
+        });
+    </script>
+</body>
+</html>
