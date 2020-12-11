@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_jQuery 선택자_2</title>
+    <script src="js/jquery-3.5.1.js"></script>
+</head>
+<body>
+    <h1>입력 양식 필터 선택자</h1>
+    <pre>
+    input 태그의 type 속성에 따라 선택자를 이용하여 요소 선택이 가능함.
+    </pre>
+
+    텍스트 박스 : <input type="text"> <br>
+    넘버 박스 : <input type="number"> <br>
+    비밀번호 : <input type="password"> <br>
+
+    버튼 : <input type="button" value="버튼"> <br>
+    reset : <input type="reset" value="reset"> <br>
+    submit : <input type="submit" value="submit"> <br>
+
+    radio : <input type="radio"> <br>
+    checkbox : <input type="checkbox"> <br>
+
+    <script>
+        $(document).ready(function() {
+            // input 태그 중 type이 text인 요소 모두 선택
+            $("input:text").css("backgroundColor", "red");
+
+            $("input[type=number]").css("backgroundColor", "orange");
+            // input:number 선택자는 지원하지 않음
+
+            $("input:password").css("backgroundColor", "yellow");
+
+            $("input:button").css("width", "100px").css("height", "100px");
+            // method chainning (메소드 체이닝)
+            // 선행 메소드의 결과가 계속 특정 요소(객체)가 반환될 경우
+            // 사용할 수 있음.
+
+            // reset 버튼 배경색 파란색, 글자색 흰색
+            $("input:reset").css("backgroundColor", "blue").css("color", "white");
+
+            // submit 버튼 너비 100px, 배경색 pink, 작성된 글자를 "제출"로 변경
+            $("input:submit")
+                .css({"width" : "100px", "backgroundColor" : "pink"})
+                .val("제출");
+
+            // 자바스크립트 객체 표기법
+            // { K:V, K:V, K:V ... }
+
+            $("input:radio").prop("checked", true);
+
+            // 속성을 추가하는 메소드
+            // .prop("속성명", 속성값) 
+            // 속성값이 true, false인 속성을 추가할 때 사용
+            // (속성명만 작성하는 경우)
+
+            // .attr("속성명", 속성값)
+            // 속성명, 속성값이 모두 작성되어야 하는 경우 사용
+
+            // checkbox가 체크되어 있고, 너비 50px, 높이 50px
+            $("input:checkbox")
+                .prop("checked", true)
+                .css({"width" : "50px", "height" : "50px"});
+
+        });
+    </script>
+</body>
+</html>
