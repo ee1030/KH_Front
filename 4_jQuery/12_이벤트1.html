@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>12_이벤트</title>
+	<style>
+		.test {
+			background: powderblue;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<h1>이벤트</h1>
+	<h3>이벤트 관련 속성</h3>
+	<p>이벤트핸들러의 매개변수로 event객체를 전달함.
+		인라인 이벤트 모델 방식으로 이벤트 설정 시 매개변수 키워드는 event로 고정.</p>
+	<button onclick="test1(event);">실행확인</button>
+	<script>
+        function test1(e) {
+            console.log(e);
+            console.log(e.target);
+        }
+	</script>
+
+	<hr>
+
+	<h3>이벤트 연결 on() / 해제 off()</h3>
+	<p>
+		요소 객체에 이벤트 발생 시 연결될 이벤트 핸들러를 지정하는 메소드이다.<br>
+
+		$('선택자').bind() : 현재 존재하는 문서 객체만 이벤트 연결<br>
+		$('선택자').unbind() : bind()로 연결된 이벤트 제거 <br>
+
+	</p>
+	<h4>
+		bind(), unbind() 메소드는 jquery3.0부터 deprecated로 설정되어<br>
+		대신 on(), off() 메소드를 사용함.<br><br>
+
+		$('선택자').on("이벤트명", "이벤트 핸들러") : bind()대신에 on()으로 대체됨<br>
+		$('선택자').off() : on()으로 연결된 이벤트 제거
+	</h4>
+
+
+    <h1 id="test1">마우스를 올려보세요</h1>
+    <button id="btn1">이벤트 제거</button>
+
+	<script>
+        $("#test1").on("mouseenter", function(event) {
+            // mouseenter : 마우스가 들어왔을 때 라는 이벤트
+            // event : 발생한 이벤트에 대한 정보가 담겨있는 객체
+            // event.target : 이벤트가 발생한 요소
+            console.log(this);
+
+            $(event.target).css("backgroundColor", "pink").text("마우스 들어옴");
+
+            $(this).css("cursor", "pointer");
+
+        });
+
+        // mouseleave : 마우스가 요소를 떠났을 때
+        $("#test1").on({"mouseleave" : function(event) {
+            $(event.target).css("backgroundColor", "yellow").text("마우스 나감");
+        },
+        "click" : function() {
+            alert("마우스 클릭됨.");
+        }});
+
+        // #btn 클릭 시 #test1 이벤트 모두 제거
+        $("#btn1").on("click", function(event) {
+            $("#test1").off("mouseenter").off("mouseleave").off("click")
+            .text("이벤트 제거됨").css("backgroundColor", "red").css("color", "white");
+        });
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>$('선택자').on( events , selector , handler )</h3>
+	<pre>
+	선택자를 기준으로 매개변수로 전달된 selector에 지정한 event 발생 시
+	해당 handler를 동적 적용시켜 이벤트 처리를 할 수 있음.
+
+	** 페이지 로딩 후 스크립트 코드로 인해 동적으로 추가된 요소는
+	일반적인 방법으로 이벤트 지정이 불가능함. 
+	이 때 아래 이벤트 연결 방법을 사용하면됨.
+
+		$(document).on( events , selector , handler );
+		-> 정적이든, 동적이든 문서내에 작성된 요소 중
+			selector에 해당하는 요소에 events가 발생하는 경우
+			handler를 수행하라는 의미 
+	</pre>
+
+
+	<div id="wrap">
+		<h2>클릭 시 h2 태그요소 추가</h2>
+	</div>
+
+	<script>
+        var count = 0;
+
+        $(document).on("click", $("#wrap > h2"), function(event){
+            var h2 = "<h2>클릭으로 인해 추가됨-" + (count++) + "</h2>";
+            $(event.target).after(h2);
+        });
+	</script>
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>one() 메소드</h3>
+	<p>이벤트에 대한 동작을 딱 한 번만 연결할 때 사용</p>
+	<button id="test4">클릭하세요</button>
+
+	<script>
+		$("#test4").one("click", function () {
+			alert("처음이자 마지막 이벤트 발생");
+			$(this).css("background-color", "red")
+				.text("클릭 불가")
+				.prop("disabled", true);
+		});
+	</script>
+</body>
+
+</html>
