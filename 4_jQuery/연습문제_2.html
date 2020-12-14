@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제_2</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        #wrap {
+            width: 200px;
+            height: 50px;
+            background-color: #92A8D1;
+            font-size: 35px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="start">시작</button>
+    <button type="button" id="stop">정지</button>
+    <div id="wrap"></div>
+
+    <script>
+        var setinterval;
+        var count = 0;
+
+        $("#start").on("click", function() {
+            $("#wrap").empty();
+
+            setinterval = window.setInterval(function() {
+                var el = "<span class='added'>" + (count++) + "</span>";
+
+                if(count <= 10) {
+                    $("#wrap").append(el);
+                } else {
+                    $("#wrap").empty();
+                    count = 0;
+                }
+            }, 200)
+
+            $(this).css("backgroundColor", "orange").css("color", "white").prop("disabled", true);
+        });
+
+        $("#stop").on("click", function() {
+                window.clearInterval(setinterval);
+                $("#start").removeAttr("style").prop("disabled", false);
+                count = 0;
+        });
+        
+    </script>
+</body>
+</html>
