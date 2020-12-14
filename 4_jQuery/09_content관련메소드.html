@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>content 관련 메소드</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h3>html() 메소드</h3>
+    <pre>
+    선택된 요소의 content 영역에 작성될 내용을 설정하거나
+    content 영역의 내용을 얻어오는 메소드.
+    (Javascript의 innerHTML과 같은 기능)
+
+    setter : 작성된 html 태그를 실제 태그로 인식함.
+    getter : 해당 요소의 content에 작성된 내용을 얻어옴(태그도 포함함)
+    </pre>
+
+    <h1 id="test1"><a href="https://www.naver.com">네이버로 이동</a></h1>
+    <h1 id="test2"></h1>
+
+    <script>
+        $(document).ready(function() {
+            // id가 test1인 요소의 내용을 태그 포함하여 얻어오기
+            var content1 = $("#test1").html();
+            console.log("content1 : " + content1);
+
+            // id가 test2인 요소에 content1을 삽입.
+            // (html태그는 태그로 인식하도록 하기)
+            // $("#test2").html(content1);
+
+            var tmp = "<a href='https://www.google.com'>구글로 이동</a>";
+            $("#test2").html(tmp);
+        });
+    </script>
+
+    <hr>
+
+    <h3>text() 메소드</h3>
+    <pre>
+        선택된 요소의 content 영역에 작성될 내용을 설정하거나
+        content 영역의 내용을 얻어오는 메소드.
+        (Javascript의 innerText과 같은 기능)
+    
+        setter : 작성된 html 태그를 실제 태그로 인식하지 않음(글자로만 취급)
+        getter : 해당 요소의 content에 작성된 내용을 얻어옴(태그는 미포함)
+    </pre>
+
+    <h1 id="test3"><a href="https://www.naver.com">네이버로 이동</a></h1>
+    <h1 id="test4"></h1>
+    <script>
+        $(function() {
+            var content2 = $("#test3").text();
+
+            console.log(content2);
+
+            $("#test4").text("<a href='https://www.naver.com'>네이버로 이동</a>");
+        });
+    </script>
+
+    <hr>
+
+    <h3>html(), text() 매개변수로 함수 전달하기</h3>
+    <pre>
+    jQuery 메소드 중 html(), text(), val()는
+    매개변수로 함수를 전달할 수 있다.
+
+    함수의 형태는
+    function(index, html){}의 형식을 가지고 있음.
+    
+    $("선택자").html(function(index, html){ });
+
+    index : 현재 접근중인 요소의 인덱스를 반환
+    html : html()로 인해 변경되기 전의 content 값
+    </pre>
+
+    <div class="testClass1">테스트1</div>
+    <div class="testClass1">테스트2</div>
+    <div class="testClass1">테스트3</div>
+
+    <script>
+        $(document).ready(function() {
+            $(".testClass1").html(function(index, html){ 
+                var str = "<h3>현재 인덱스 : " + index + ", 변경 전 content : " + html + "</h3>";
+
+                return str;
+            });
+        });
+    </script>
+</body>
+</html>
