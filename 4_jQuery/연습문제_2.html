@@ -32,8 +32,11 @@
                 if(count <= 10) {
                     $("#wrap").append(el);
                 } else {
-                    $("#wrap").empty();
-                    count = 0;
+                    $(".added").last().remove();
+
+                    if($("#wrap").html() == ""){
+                        count = 0;
+                    }
                 }
             }, 200)
 
