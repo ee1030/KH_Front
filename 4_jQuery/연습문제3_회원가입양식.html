@@ -100,46 +100,52 @@
 
     <script>
         var regExp;
-
-        $("#userId").on("blur", function() {
-            var id = $(this).val();
+        
+        function checkId() {
+            var id = $("#userId").val();
 
             regExp = /^[a-zA-Z\d-_]{6,14}$/;
-
+            
             if(regExp.test(id)) {
-                $(this).css("backgroundColor", "springgreen");
+                $("#userId").css("backgroundColor", "springgreen");
+                return true;
             } else {
-                $(this).css("backgroundColor", "red");
+                $("#userId").css("backgroundColor", "red");
+                return false
             }
-        });
-
-        $("#userPw2").on("keyup", function() {
+        }
+        
+        function checkPw() {
             if($("#userPw1").val().length == 0) {
-                $(this).val("");
+                $("#userPw2").val("");
                 alert("비밀번호를 입력해주세요.");
                 $("#userPw1").focus();
             } else {
-                if($("#userPw1").val() == $(this).val()) {
+                if($("#userPw1").val() == $("#userPw2").val()) {
                     $("#pwCheck").text("비밀번호가 일치합니다.").css("color", "green");
+                    return true;
                 } else {
                     $("#pwCheck").text("비밀번호가 일치하지않습니다.").css("color", "red");
+                    return false;
                 }
             }
-        });
-
-        $("#name").on("change", function() {
-            var name = $(this).val();
-
+        }
+        
+        function checkName() {
+            var name = $("#name").val();
+            
             regExp = /^[가-힣]{2,5}$/;
-
+            
             if(regExp.test(name)) {
                 $("#nameCheck").text("정상입력").css("color", "green");
+                return true;
             } else {
                 $("#nameCheck").text("한글만 입력하세요").css("color", "red");
+                return false;
             }
-        });
+        }
 
-        function validate() {
+        function checkTel() {
             var tel = $("#tel").val();
 
             regExp = /^[0][0-9]{1,2}-[0-9]{3,4}-[0-9]{4}/;
@@ -148,8 +154,35 @@
                 alert("전화번호 형식이 올바르지 않습니다.")
                 $("#tel").focus();
                 return false;  
+            } else {
+                return true;
             }
         }
-    </script>
+        
+        $("#userId").on("blur", checkId);
+        
+        $("#userPw2").on("keyup", checkPw);
+        
+        $("#name").on("change", checkName);
+
+        function validate() {
+            if(!checkId()) {
+                $("#userId").focus();
+                return false;
+            } else if(!checkPw()) {
+                $("#userPw1").focus();
+                return false;
+            } else if(!checkName()) {
+                $("#name").focus();
+                return false;
+            } else if(!checkTel()) {
+                $("#tel").focus();
+                return false;
+            } else if(!confirm("회원가입을 진행하시겠습니까?")) {
+                return false;
+            }
+        }
+        
+        </script>
 </body>
 </html>
