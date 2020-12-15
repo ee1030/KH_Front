@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제3_회원가입 양식</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 450px;
+            margin: auto;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        table tr>td:nth-of-type(1) { /* 1열 선택 */
+            width: 110px;
+        }
+
+        table tr>td:nth-of-type(2) { /* 2열 선택 */
+            width: 110px;
+        }
+
+        table tr>td:nth-of-type(3) { /* 3열 선택 */
+            width: 110px;
+        }
+
+        /* 초기화, 회원가입 버튼 가운데 정렬 */
+        table tr:last-of-type > td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form method="post" onsubmit="return validate();">
+        <table>
+            <!-- 8행 3열 -->
+            <tr>
+                <td><label for="userId">아이디</label></td>
+                <td><input type="text" id="userId" required></td>
+                <td><button type="button">중복확인</button></td>
+            </tr>
+
+            <tr>
+                <td><label for="userPw1">비밀번호</label></td>
+                <td><input type="password" id="userPw1" required></td>
+                <td><span id="pwCheck"></span></td>
+            </tr>
+
+            <tr>
+                <td><label for="userPw2">비밀번호 확인</label></td>
+                <td><input type="password" id="userPw2" required></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td><label for="name">이름</label></td>
+                <td><input type="text" id="name" required></td>
+                <td><span id="nameCheck"></span></td>
+            </tr>
+
+            <tr>
+                <td><label for="tel">전화번호</label></td>
+                <td><input type="tel" id="tel" placeholder='"-" 포함' required></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td><label for="email">이메일</label></td>
+                <td><input type="email" id="email" required></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>성별</td>
+                <td>
+                    <label for="male">남</label>
+                    <input type="radio" name="gender" id="male" value="M" required>
+                    <label for="female">여</label>
+                    <input type="radio" name="gender" id="female" value="F" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <button type="reset">초기화</button>
+                    &nbsp;
+                    <button type="submit">회원가입</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        var regExp;
+
+        $("#userId").on("blur", function() {
+            var id = $(this).val();
+
+            regExp = /^[a-zA-Z\d-_]{6,14}$/;
+
+            if(regExp.test(id)) {
+                $(this).css("backgroundColor", "springgreen");
+            } else {
+                $(this).css("backgroundColor", "red");
+            }
+        });
+
+        $("#userPw2").on("keyup", function() {
+            if($("#userPw1").val().length == 0) {
+                $(this).val("");
+                alert("비밀번호를 입력해주세요.");
+                $("#userPw1").focus();
+            } else {
+                if($("#userPw1").val() == $(this).val()) {
+                    $("#pwCheck").text("비밀번호가 일치합니다.").css("color", "green");
+                } else {
+                    $("#pwCheck").text("비밀번호가 일치하지않습니다.").css("color", "red");
+                }
+            }
+        });
+
+        $("#name").on("change", function() {
+            var name = $(this).val();
+
+            regExp = /^[가-힣]{2,5}$/;
+
+            if(regExp.test(name)) {
+                $("#nameCheck").text("정상입력").css("color", "green");
+            } else {
+                $("#nameCheck").text("한글만 입력하세요").css("color", "red");
+            }
+        });
+
+        function validate() {
+            var tel = $("#tel").val();
+
+            regExp = /^[0][0-9]{1,2}-[0-9]{3,4}-[0-9]{4}/;
+
+            if(!regExp.test(tel)) {
+                alert("전화번호 형식이 올바르지 않습니다.")
+                $("#tel").focus();
+                return false;  
+            }
+        }
+    </script>
+</body>
+</html>
