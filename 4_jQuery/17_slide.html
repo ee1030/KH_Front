@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17_slide</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+		div {
+			width: 300px;
+			height: 30px;
+			background: yellowgreen;
+			color: orangered;
+			border-radius: 10px;
+			text-align: center;
+			line-height: 30px;
+			border: 1px solid green;
+			cursor: pointer;
+		}
+
+		p.contents {
+			border: 1px solid lightgray;
+			width: 300px;
+			height: 200px;
+			display: none;
+		}
+	</style>
+
+</head>
+<body>
+    <h1>slide() 메소드</h1>
+    <h3>slideUp() , slideDown()</h3>
+
+    <div>첫 번째 메뉴</div>
+    <p class="contents">1</p>
+
+    <div>두 번째 메뉴</div>
+    <p class="contents">2</p>
+
+    <div>세 번째 메뉴</div>
+    <p class="contents">3</p>
+
+    <div>네 번째 메뉴</div>
+    <p class="contents">4</p>
+
+    <div>다섯 번째 메뉴</div>
+    <p class="contents">5</p>
+
+    <script>
+        $("div").on("click", function() {
+            if($(this).next().css("display") == "none") {
+                // $(this) : 클릭된 div 태그
+                // .next() : 클릭된 div 다음에 존재하는 요소(p)
+                // .css("display") : p태그의 스타일 중 display 속성 값을 반환
+                $(this).siblings("p.contents").slideUp();
+                $(this).next().slideDown();
+            } else {
+                $(this).next().slideUp();
+            }
+        });
+    </script>
+</body>
+</html>
