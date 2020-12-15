@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>13_이벤트2</title>
+	<style>
+		.outer {
+			width: 200px;
+			height: 200px;
+			background: orange;
+			padding: 50px;
+
+		}
+
+		.inner {
+			width: 100%;
+			height: 100%;
+			background: red;
+
+		}
+
+		.reverse {
+			background: black;
+			color: white;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<h1>이벤트 연결 메소드</h1>
+	<h3>
+		mouseenter/mouseleave <br>
+		mouseover/mouseout
+	</h3>
+	<h4>mouseover-mouseout : 자식 요소에 접근 시에도 이벤트 핸들링함.<br></h4>
+	<div class="outer o1">
+		<div class="inner"></div>
+	</div>
+	<p id="output"></p>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h4>mouseenter-mouseleave : 자식 요소에 접근 시에는 이벤트 핸들링을 하지 않음. </h4>
+	<div class="outer o2">
+		<div class="inner"></div>
+	</div>
+	<p id="output2"></p>
+
+	<script>
+        // mouseover, mouseout
+        // 커서가 요소위에 올라오거나 나갈경우
+        // + 자식 요소에 접근을 해도 동작을 함
+
+        $(".o1").on("mouseover", function() {
+            document.getElementById("output").innerHTML += "OVER! ";
+        });
+
+        $(".o1").on("mouseout", function() {
+            document.getElementById("output").innerHTML += "OUT! ";
+        });
+
+        // mouseenter / mouseleave
+        // 커서가 요소 위에 올라오거나 나갈경우
+        // + 자식요소 접근 시 이벤트가 발생하지 않음
+        $(".o2").on("mouseenter", function() {
+            document.getElementById("output2").innerHTML += "ENTER! ";
+        });
+
+        $(".o2").on("mouseleave", function() {
+            document.getElementById("output2").innerHTML += "LEAVE! ";
+        });
+
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>input 관련 이벤트</h3>
+	<pre>
+	focus :  요소가 focus를 받을 때
+	blur : 요소의 focus가 해제되었을 때
+	
+	focusin :  선택한 요소의 자식이 focus를 받을 때
+	focusout :  선택한 요소의 자식이 focus가 해제되었을 때
+
+	change : 요소의 값이 변경되었을 때
+		* select, checkbox, radio에 change 이벤트를 작성하는 경우
+		   -> 값이 변경 되었을 때
+
+		* text 형태의 input, textarea에 change 이벤트를 작성하는 경우
+		  -> focus를 잃을 때 (== blur) 
+
+	select : 선택한 요소의 입력 영역 값이 블럭에 잡힌경우
+
+
+	</pre>
+	focus / blur : <input type="text" id="focus-blur"><br>
+
+	<div id="focus-in-out">
+		focusin / focusout : <input type="text"><br>
+	</div>
+	change1 : <input type="checkbox" id="change1"><br>
+	change2 : <input type="text" id="change2"><br>
+	select : <input type="text" id="select"><br>
+
+	<script>
+		// focus, blur : 초점이 맞춰졌을 때, 잃었을 때
+		$("#focus-blur").on("focus", function() {
+			$(this).css("backgroundColor", "lightcoral")
+		});
+
+		$("#focus-blur").on("blur", function(event) {
+			$(event.target).removeAttr("style");
+		});
+
+		// foucsin / focusout
+		// 자식 요소에 초점이 맞춰졌을 때 / 잃었을 때
+		$("#focus-in-out").on("focusin", function() {
+			// #focus-in-out 자식 요소에 초점이 맞춰 졌을 때
+			$(this).children().css("backgroundColor", "lightcoral");
+		});
+
+		$("#focus-in-out").on("focusout", function() {
+			// #focus-in-out 자식 요소에 초점이 맞춰 졌을 때
+			$(this).children().removeAttr("style");
+		});
+
+		// change : 선택된 요소의 값이 변했을 때
+		$("#change1").on("change", function() {
+			console.log("체크박스 값이 변경됨.");
+		});
+
+		// change 이벤트가 text box에서 인지되는 방법
+		// == blur (포커스를 잃었을 때)
+		$("#change2").on("change", function() {
+			console.log("text box 값이 변경 됨.");
+		});
+
+		// select : 요소에 입력된 내용에 블럭이 잡힌 경우
+		$("#select").on("select", function() {
+			console.log("내용이 블럭에 잡힘.");
+		});
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>키보드 이벤트</h3>
+	<pre>
+		keydown : 키보드가 눌러질 때.
+		keypress : 글자가 입력될 때. 펑션키, 기능키 사용 못함
+		keyup : 키보드가 떼어질 때
+	</pre>
+	<input type="text" id="test">
+	<script>
+		// $("#test").on("keydown", function() {
+		// 	console.log(event.key);
+		// });
+
+		// $("#test").on("keypress", function() {
+		// 	console.log(event.key);
+		// });
+
+		$("#test").on("keyup", function() {
+			console.log(event.key);
+		});
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>동적으로 글자수 세기</h3>
+	<div>
+		<p><span id="counter">0</span>/150</p>
+		<textarea id ="test2" cols="70" rows="5" style="resize:none"></textarea>
+	</div>
+	<script>
+		// input 이벤트
+		// 입력과 관련된 모든 동작을 인식하는 이벤트
+
+		$("#test2").on("input", function() {
+			$("#counter").text($(this).val().length);
+
+			// 입력된 글자 수가 150을 넘어서게 되는 경우
+			// 글자 수를 빨간색으로 변경
+			if($(this).val().length >= 150) {
+				$("#counter").css("color", "red");
+			} else {
+				$("#counter").removeAttr("style");
+			}
+		});
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>동적으로 아이디 조건 확인</h3>
+	<!-- 
+		아이디 입력 -> 입력 조건 검사(정규식) -> 중복 검사
+	-->
+	<p>
+		- 영어 대/소문자 + 숫자 + 특수문자(-_) 허용<br>
+		- 총 6 ~14 글자
+
+	</p>
+	<label for="memberId">아이디 : </label>
+	<input type="text" name="memberId" id="memberId">
+	<span id="idCheck"></span>
+	<br>
+
+
+	<script>
+		$("#memberId").on("keyup", function() {
+			// 1) 입력된 값 얻어오기
+			var memberId = $(this).val();
+
+			// 2) 정규식 작성 후 검사
+			var regExp = /^[a-zA-Z\d_]{6,14}$/;
+
+			if(regExp.test(memberId)) {
+				// 문자열이 정규식에 부합할 경우
+				$("#idCheck").text("사용 가능한 아이디 입니다.")
+							.css("color", "green");
+			} else {
+				// 문자열이 정규식에 부합하지 않을 경우
+				$("#idCheck").text("사용 할 수 없는 아이디 형식 입니다.")
+							.css("color", "red");
+			}
+		});
+	</script>
+
+
+	<!-------------------------------------------------------------------------------------------->
+	<hr>
+	<h3>동적으로 비밀번호 일치 여부 확인</h3>
+	<p>
+		- "비밀번호" 입력 후 "비밀번호 확인" 입력 시 비밀번호 일치 여부 메세지 출력<br>
+		- "비밀번호" 를 미입력한 상태로 "비밀번호 확인" 입력 시 <br>
+		"비밀번호 확인"에 입력된 내용을 모두 지우고<br>
+		"비밀번호를 입력해 주세요." 경고창 출력 후 focus를 "비밀번호"로 이동
+	</p>
+
+	<!-- 비밀번호 확인을 위해서 type을 text로 진행함. -->
+	<label for="memberPw1">비밀번호 : </label>
+	<input type="text" name="memberPw1" id="memberPw1">
+	<span id="pwCheck"></span><br>
+
+	<label for="memberPw2">비밀번호 확인 : </label>
+	<input type="text" name="memberPw2" id="memberPw2">
+
+	<script>
+		// 1. 비밀번호 확인 입력 시
+		// 비밀번호에 작성된 문자열의 길이를 얻어와 0인지 검사
+
+		$("#memberPw1, #memberPw2").on("keyup", function() {
+			if($("#memberPw1").val().length == 0) {
+				alert("비밀번호를 입력해 주세요");
+				$("#memberPw1").focus();
+				$("#memberPw2").val("");
+			} else {
+				if($("#memberPw1").val() == $("#memberPw2").val()) {
+					$("#pwCheck").text("비밀번호가 일치합니다.").css("color", "green");
+				} else {
+					$("#pwCheck").text("비밀번호가 일치하지 않습니다.").css("color", "red");
+				}
+			}
+		});
+
+	</script>
+</body>
+
+</html>
