@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>15_show_hide</title>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<h1>시각적 효과(display 속성 관련 메소드)</h1>
+	<p> Effect 메소드 : 페이지에 애니메이션 효과를 만들기 위한 메소드 집합 </p>
+	<pre>
+	1. $(‘s’).메소드명();
+	2. $(‘s’).메소드명([speed]);
+	3. $(‘s’).메소드명([speed], [easing], [callback]);
+	speed : 실행속도(밀리세컨초) / 숫자 or slow, fast
+	easing : 변경되는 지점별 속도 / linear, swing 가능
+	callback : 메소드 실행 후 실행할 함수
+	</pre>
+
+	<h3>show()와 hide()</h3>
+	<p>문서 객체를 크게 하며 보여주거나 작게 하며 사라지게 한다</p>
+	<p>
+		$(selector).show(speed,easing,callback)
+	</p>
+
+	<button id="show">보여주기</button>
+	<button id="hide">숨기기</button><br>
+	<img id="river" src="image/river1.PNG">
+
+	<hr>
+
+	<script>
+        $("#show").on("click", function() {
+            $("#river").show(1000);
+        });
+
+        $("#hide").on("click", function() {
+            $("#river").hide(1000);
+        });
+	</script>
+
+	<br>
+
+	<button id="toggle">토글버튼</button>
+	<!-- 토글버튼 : 버튼 하나로 on/off 동작을 하는 버튼 -->
+	<br>
+	<img id="dog" src="image/sibadog.gif">
+
+	<script>
+        $("#toggle").on("click", function() {
+            $("#dog").toggle(1000);
+
+            /* if($("#dog").css('display')!='none'){	
+				$("#dog").hide(1000);
+			}else{
+				$("#dog").show(1000);
+			} */
+
+        });
+	</script>
+
+</body>
+
+</html>
