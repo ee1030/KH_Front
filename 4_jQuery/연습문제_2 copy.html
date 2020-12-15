@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습문제_2</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        #wrap {
+            width: 200px;
+            height: 50px;
+            background-color: #92A8D1;
+            font-size: 35px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="start">시작</button>
+    <button type="button" id="stop">정지</button>
+    <div id="wrap"></div>
+
+    <script>
+        var count = 9;
+        var timer;
+
+        $("#start").click(function() {
+            $("#wrap").empty();
+
+            timer = setInterval(function() {
+                var el = "<span class='added'>" + (count--) + "</span>";
+
+                
+
+                if(count >= -1) {
+                    $("#wrap").append(el);
+                } else {
+                    $(".added").last().remove();
+
+                    if($("#wrap").html() == "") {
+                        count = 9;
+                    }
+                }
+            }, 300);
+
+            $(this).prop("disabled", true);
+        });
+
+        $("#stop").click(function() {
+            clearInterval(timer);
+            count = 9;
+
+            $("#start").prop("disabled", false);
+        });
+    </script>
+</body>
+</html>
