@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리 복습문제 3</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <h1>Effect 메소드</h1>
+    <button type="button" id="show">확대되면서 보여기지</button>
+    <button type="button" id="hide">축소되면서 숨기기</button><br>
+    <button type="button" id="fadein">불투명해지면서 보여지기</button>
+    <button type="button" id="fadeout">투명해지면서 숨기기</button><br>
+    <img src="image/피카츄.gif" id="pika">
+
+    <script>
+        $("#show").on("click", function() {
+            $("#pika").show(500);
+        });
+
+        $("#hide").on("click", function() {
+            $("#pika").hide(500);
+        });
+
+        $("#fadein").on("click", function() {
+            $("#pika").fadeIn(500);
+        });
+
+        $("#fadeout").on("click", function() {
+            $("#pika").fadeOut(500);
+        });
+    </script>
+
+</body>
+</html>
