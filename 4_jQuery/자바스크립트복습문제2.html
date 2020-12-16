@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 복습문제 2</title>
+</head>
+<body>
+    <!-- 1. 입력 버튼 클릭 시 inputFn() 함수 호출
+
+    inputFn() 함수 기능
+    - 입력 영역 input태그에 작성된 내용을 모두 얻어와 객체에 저장.
+    - 생성된 객체는 전역변수 info를 선언하여 대입. 
+    - 객체 생성 시 printInfo() 메소드를 추가하여
+        "이름 : (이름)<br> 나이 : (나이) <br> 주소 : (주소)" 
+        문자열을 반환하도록 함.
+    
+    
+    2. 출력 버튼 클릭 시 outputFn() 함수 호출
+    
+    outputFn() 함수 기능
+    - 전역변수 info가 정의되었는지 검사하여
+        정의되지 않은 경우 경고창으로 "입력부터 진행해 주세요." 출력
+    
+    - 전역변수 info가 정의된 경우
+        info 객체의 메소드인 printInfo()를 호출하여
+        출력 영역에 내용을 출력하기.
+    
+    
+    3. 초기화 버튼 클릭 시 
+        입력 영역 input태그에 작성된 내용을 모두 삭제하고 
+        info 전역 변수를 정의되지 않은 상태로 변경 -->
+    <fieldset>
+        <legend>입력</legend>
+        <label for="name">이름 : </label>
+        <input type="text" id="name"><br>
+
+        <label for="age">나이 : </label>
+        <input type="text" id="age"><br>
+
+        <label for="addr">주소 : </label>
+        <input type="text" id="addr"><br>
+
+        <button type="button" id="input">입력</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>출력</legend>
+        <div id="outputArea"></div>
+        <button type="button" id="output">출력</button>
+        <button type="button" id="reset">초기화</button>
+    </fieldset>
+
+    <script>
+        var info;
+        
+        document.getElementById("input").onclick = inputFn;
+        
+        document.getElementById("output").onclick = outputFn;
+
+        document.getElementById("reset").onclick = function() {
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("addr").value = "";
+
+            document.getElementById("outputArea").innerHTML = "";
+
+            info = undefined;
+        };
+
+        function inputFn() {
+            var name = document.getElementById("name").value;
+
+            info = {
+                name : document.getElementById("name").value,
+                age : document.getElementById("age").value,
+                addr : document.getElementById("addr").value,
+                printInfo : function() {
+                    return "이름 : " + this.name + "<br> 나이 : " + this.age + "<br> 주소 : " + this.addr; 
+                }
+            }
+        }
+
+        function outputFn() {
+            if(info == undefined) {
+                alert("입력부터 진행해주세요.");
+            } else {
+                document.getElementById("outputArea").innerHTML = info.printInfo();
+            }
+        } 
+    </script>
+</form>
+</body>
+</html>
