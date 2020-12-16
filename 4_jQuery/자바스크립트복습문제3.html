@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 복습문제 3</title>
+</head>
+<body>
+    <pre>
+        - 추가 버튼 클릭 시 id가 wrapper3인 영역에 주석에 작성된 모양의 객체를 생성하여 마지막 자식으로 추가하기
+        <!-- 
+            <div>
+                입력 : <input type="number" class="inputNumbers">
+                <button type="button" onclick="deleteRow(this)">삭제</button>
+            </div>
+         -->
+
+        - 삭제 버튼 클릭 시 deleteRow 함수를 호출하여 해당 클릭 한 삭제버튼이 있는 줄을 삭제
+
+        - 합계 버튼 클릭 시 input 태그에 작성된 모든 숫자를 더하여 id가 printArea3인 영역에 출력
+
+    </pre>
+
+
+    <h3>객체(요소, 노드) 추가/삭제</h3>
+
+    <button type="button" id="add">추가</button>
+    <button type="button" id="sum">합계</button>
+    <br><br>
+    입력 : <input type="number" class="inputNumbers">
+
+    <!-- 객체 추가 영역-->
+    <div id="wrapper3"></div>
+
+    <!-- 합계 출력 영역 -->
+    <div id="printArea3"></div>
+
+    <script>
+        // 추가버튼 클릭시
+        document.getElementById("add").onclick = function() {
+            var elDiv = document.createElement("div");
+
+            var text = document.createTextNode("입력 : ");
+            elDiv.appendChild(text);
+
+            var elInput = document.createElement("input");
+            elInput.setAttribute("type", "number");
+            elInput.setAttribute("class", "inputNumbers");
+            elDiv.appendChild(elInput);
+
+            var elBtn = document.createElement("button");
+            elBtn.setAttribute("type", "button");
+            elBtn.setAttribute("onclick", "deleteRow(this)");
+
+            var btnText = document.createTextNode("삭제");
+            elBtn.appendChild(btnText);
+
+            elDiv.appendChild(elBtn);
+
+            document.getElementById("wrapper3").appendChild(elDiv);
+        }
+
+        function deleteRow(el) {
+            el.parentNode.remove();
+        }
+
+        document.getElementById("sum").onclick = function() {
+            var sum = 0;
+
+            for(var item of document.getElementsByClassName("inputNumbers")) {
+                sum += Number(item.value);
+            }
+
+            document.getElementById("printArea3").innerHTML = "<h3>합계 : " + sum + "</h3>";
+        }
+    </script>
+</body>
+</html>
