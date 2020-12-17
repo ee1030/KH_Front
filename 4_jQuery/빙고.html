@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빙고</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        .bingoBox {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 1px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+        }
+
+        #bingoArea {
+            text-align: center;
+        }
+
+        #printArea {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>빙고 껨</h1>
+    <table>
+        <tr>
+            <td>
+                <label for="bingoNum">칸 수 : </label>
+            </td>
+            <td>
+                <input type="number" id="bingoNum"><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="winNum">승리 빙고 수 : </label>
+            </td>
+            <td>
+                <input type="number" id="winNum">
+            </td>
+            <td>
+                <button type="button" id="create">생성</button>
+            </td>
+        </tr>
+        
+       
+        
+    </table>
+
+    <div id="bingoArea"></div>
+    <div id="printArea"></div>
+
+    <script>
+        var winCount;
+        var bingoNum;
+        var randSet = new Set();
+        var checkArr;
+
+        $("#create").on("click", function() {
+            $("#bingoArea").empty();
+            bingoNum = Number($("#bingoNum").val());
+            winCount = Number($("#winNum").val());
+
+            checkArr = new Array(bingoNum);
+
+            for(var i=0; i<checkArr.length; i++) {
+                checkArr[i] = new Array(bingoNum);
+            }
+
+            while(randSet.size < bingoNum*bingoNum) {
+                randSet.add(Math.floor(Math.random()*(bingoNum*bingoNum)+1));
+            }
+
+            var randArr = Array.from(randSet);
+
+            for(var i=0; i<bingoNum; i++) {
+                for(var j=0; j<bingoNum; j++) {
+                    var randNum = randArr.pop();
+                    checkArr[i][j] = randNum;
+
+                    var box = $("<div>").text(randNum);
+                    box.addClass("bingoBox");
+                    box.attr("id", ""+i+j);
+
+                    $("#bingoArea").append(box);
+                }
+                $("#bingoArea").append($("<br>"));
+            }
+        });
+
+        $(document).on("click", ".bingoBox", function() {
+            $(this).css("backgroundColor", "lightcoral");
+            
+            for(var i=0; i<bingoNum; i++) {
+                for(var j=0; j<bingoNum; j++) {
+                    if($(this).attr("id") == ""+i+j) {
+                        checkArr[i][j] = 0;
+                    }
+                }
+            }
+
+            var bingoCount = 0;
+            var crossCount1 = 0;
+            var crossCount2 = 0;
+
+            for(var i=0; i<bingoNum; i++) {
+                var colCount = 0;
+                var rowCount = 0;
+
+                for(var j=0; j<bingoNum; j++) {
+                    if(checkArr[i][j] == 0) {
+                        colCount++;
+                    }
+
+                    if(checkArr[j][i] == 0) {
+                        rowCount++;
+                    }
+                    if(i==j && checkArr[i][j] == 0) {
+                        crossCount1++;
+                    }
+
+                    if(i+j == bingoNum-1 && checkArr[j][i] == 0) {
+                        crossCount2++;
+                    }
+                }
+
+                if(colCount >= bingoNum) {
+                    bingoCount++;
+                }
+
+                if(rowCount >= bingoNum) {
+                    bingoCount++;
+                }
+            }
+
+            if(crossCount1 >= bingoNum) {
+                bingoCount++;
+            }
+            if(crossCount2 >= bingoNum) {
+                bingoCount++;
+            }
+
+            $("#printArea").html("<h3>빙고 수 : " + bingoCount + "</h3>");
+
+            if(bingoCount == winCount) {
+                alert("승리했습니다!");
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>
