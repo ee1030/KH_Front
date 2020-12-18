@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_반응형 웹</title>
+    <link rel="stylesheet" href="style1.css" type="text/css">
+    <script src="https://kit.fontawesome.com/d291eb41f4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <p>
+        <h1>반응형 웹(Responsive Web)이란?</h1>
+        PC, 스마트폰, 태블릿, 스마트TV 등 다양한 기기의 디스플레이 크기에 맞게<br>
+        자동으로 웹 화면의 크기와 구조를 변화하도록 만든 웹 페이지
+    </p>
+
+    <p>
+        <h3>viewport : 화면상의 표시 영역(디스플레이)</h3>
+        화면 크기가 변하면 페이지 너비나 화면 배율을 조정 <br>
+        * 반응형 웹을 구현하기 위한 가장 기본적인 메타 태그 <br>
+
+        width: viewport의 가로 크기 조정. <br>
+        일반적인 숫자값 또는 device-width와 같은 특정 값 사용 가능.<br>
+        device-width : 웹페이지의 기본 너비를 <br>
+        현재 사용 기기의 화면 너비와 일치<br>
+
+        initial-scale : 페이지가 처음 로딩될 때 줌(확대) 레벨 조정(1~10, 기본값 1).<br>
+
+        height : viewport의 세로 크기 조정<br>
+        minimum-scale : viewport의 최소 배율값, 기본값은 0.25입니다.<br>
+        maximum-scale : viewport의 최대 배율값, 기본값은 1.6입니다.<br>
+        -scalable : 사용자의 확대/축소 기능을 설정, 기본값은 yes입니다.
+    </p>
+
+    <hr>
+
+    <h3>미디어 쿼리(@media)</h3>
+    <p>
+        화면(screen), 프린터(print)와 같은 미디어 타입을 따라
+        다른 스타일 시트를 적용하게 하는 css 코드.
+    </p>
+
+    <h3>미디어 쿼리(@media) 예시</h3>
+
+    <div class="wrapper">
+        <nav>
+            <div class="logo_area">
+                <a href="#">
+                    <img id="logo_img" src="logo.png">
+                </a>
+            </div>
+
+            <ul class="menu_area">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Board</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+
+            <div class="login_area">
+                <a href="#">로그인</a> | <a href="#">회원가입</a>
+            </div>
+
+            <a class="menu_toggle">
+                <i class="fas fa-bars"></i>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // .menu_toggle이 클릭 되었을 때
+        $(".menu_toggle").on("click", function() {
+            // .menu_area, .login_area 두 요소가
+            // 슬라이드 되면서 열리고, 닫히게 하기
+            $(".menu_area, .login_area").slideToggle(200);
+        });
+
+        // 창 크기 변화를 감지하기
+        $(window).resize(function() {
+            if($(window).width() > 768) {
+                $(".menu_area, .login_area").removeAttr("style");
+            }
+        });
+    </script>
+
+</body>
+</html>

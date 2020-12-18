@@ -1,0 +1,113 @@
+.wrapper {
+    height: 500px;
+}
+
+nav {
+    width: 100%;
+    height: 50px;
+    padding: 10px 0; 
+        /* 상하, 좌우 */
+    background-color: #222;
+}
+
+nav > * {
+    float: left;
+    line-height: 50px;
+}
+
+.logo_area {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+}
+
+#logo_img {
+    width: 50px;
+}
+
+.menu_area {
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    height: 100%;
+}
+
+.menu_area > li {
+    list-style: none;
+    float: left;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+
+.menu_area > li > a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.menu_area > li > a:hover {
+    background-color: #555
+}
+
+.login_area {
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: ivory;
+}
+
+.menu_area a, .login_area a {
+    text-decoration: none;
+    color: ivory;
+    height: 100%;
+    font-weight: bold;
+}
+
+/* 메뉴 토글 버튼 */
+.menu_toggle {
+    position: absolute;
+    right: 30px;
+    color: ivory;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+/* 미디어 쿼리
+    max-width : 기기의 화면 크기가 지정된 최대 크기 이하일 경우
+        -> 지정된 크기 이하일 때
+    min-width : 기기의 화면 크기가 지정된 최소 크기 이상일 경우
+        -> 지정된 크기 이상일 때
+*/
+
+@media screen and (max-width : 768px) {
+    /* 스크린(화면) 크기가 768px 이하일 경우 스타일 */
+    /* nav {
+        background-color: green;
+    } */
+
+    .menu_area {
+        background-color: #222;
+        width: 100%;
+        height: 400%;
+        display: none;
+    }
+
+    .menu_area > li {
+        width: 100%;
+        height: 25%;
+    }
+
+    .login_area {
+        background-color: #222;
+        width: 100%;
+        display: none;
+    }
+
+    .menu_toggle {
+        display: block;
+    }
+}
