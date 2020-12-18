@@ -1,0 +1,48 @@
+table{
+    /* 빙고판(테이블)을 화면 가운데 정렬 */
+    margin: auto; 
+    padding-top: 50px;
+}
+
+form, #bingoCount{
+    /* 빙고 개수 글자를 화면 가운데 정렬 */
+    text-align: center;
+    padding-top: 50px;
+}
+
+td{  /* 빙고 칸에 대한 스타일 설정 */
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+td:not(.check):hover{
+    /* td 태그 중 check 클래스가 없는 요소 중 마우스 오버가 된 요소 선택 */
+    background-color: yellow;
+}
+
+.check{
+    background-color: skyblue;
+}
+
+.bingo{
+    background-color: tomato;
+}
+
+input[type=number]{
+    /* input 태그 중 type이 number인 경우는 size 속성이 적용되지 않아 별도로 너비를 지정해햐함. */
+    width: 80px;
+}
+
+/* 빙고 경고창 출력 시 배경색 */
+.swal-overlay {
+    background-color: rgba(210, 210, 210, 0.7);
+}
+
+/* 빙고 경고창 글씨 크기 */
+.swal-title {
+    font-size: 50px;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<link rel="stylesheet" href="bingo-style.css" type="text/css">
+
+<body>
+    <form onsubmit="return false">
+        <h1>빙고게임</h1>
+        칸 수(최소 3) : <input type="number" id="cellCount" placeholder="기본값 5" min="3"><br>
+        승리 빙고 수(최소 1) : <input type="number" id="inputCount" placeholder="기본값 3" min="1">
+        <button id="btn">생성</button>
+    </form>
+    <br>
+
+    <table id="tbl"></table>
+
+    <!-- sweetalert : alert창을 꾸밀 수 있게 해주는 라이브러리 https://sweetalert.js.org/ -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- 빙고 관련 로직이 작성되어있는 스크립트 -->
+    <script type="text/javascript" src="bingo-script.js"></script>
+</body>
+
+</html>
